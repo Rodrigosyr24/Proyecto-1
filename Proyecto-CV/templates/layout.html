@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AuraCV - Portal de Empleo</title>
+
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="icon" href="/static/img/favicon.ico" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="{{ body_class or '' }}">
+    <header id="cabecera" class="fijar-cabecera">
+        <div class="container nav-bar">
+            <a href="/" class="nav-logo">
+                <img class="img-fluid" src="/static/img/Logo_empleo.png" alt="Logo AuraCV">
+            </a>
+            <form action="{{ url_for('search') }}" method="GET" class="nav-search-bar">
+                <input type="text" name="q" placeholder="Buscar empleos, perfiles, empresas...">
+                <button type="submit" aria-label="Buscar"><i class="fas fa-search"></i></button>
+            </form>
+            
+            {% if current_user.is_authenticated %}
+                {% if current_user.tipo_usuario == 'candidato' %}
+                    <!-- MENÚ PARA CANDIDATOS -->
+                    <ul class="nav-menu" id="navMenu">
+                        <li class="nav-menu-item"><a class="nav-menu-link" href="{{ url_for('busqueda_empleos') }}">Buscar Empleos</a></li>
+                        <li class="nav-menu-item"><a class="nav-menu-link" href="{{ url_for('mi_perfil') }}">Mi Perfil</a></li>
+                        <li class="nav-menu-item"><a class="nav-menu-link" href="{{ url_for('logout') }}">Cerrar Sesión</a></li>
+                    </ul>
+                {% elif current_user.tipo_usuario == 'empresa' %}
+                    <!-- MENÚ PARA EMPRESAS -->
+                    <ul class="nav-menu" id="navMenu">
+                        <li class="nav-menu-item"><a class="nav-menu-link" href="{{ url_for('dashboard_empresa') }}">Buscar Candidatos</a></li>
+                        <li class="nav-menu-item"><a class="nav-menu-link" href="{{ url_for('publicar_oferta') }}">Publicar Oferta</a></li>
+                        <li class="nav-menu-item"><a class="nav-menu-link" href="{{ url_for('logout') }}">Cerrar Sesión</a></li>
+                    </ul>
+                {% endif %}
+            {% else %}
+                <!-- MENÚ PARA VISITANTES -->
+                <ul class="nav-menu" id="navMenu">
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="{{ url_for('busqueda_empleos') }}">Buscar Empleos</a></li>
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="{{ url_for('portal_empresas') }}">Para Empresas</a></li>
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="{{ url_for('portal_candidatos') }}">Iniciar Sesión</a></li>
+                </ul>
+            {% endif %}
+
+            <button class="menu-toggle" id="menuToggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer id="pie" class="padded">
+        <div class="container">
+            <p>© 2025 AuraCV. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- ====================================================== -->
+    <!--  ESTRUCTURA DE TODAS LAS VENTANAS MODALES (VERSIÓN DETALLADA) -->
+    <!-- ====================================================== -->
+    <div class="modal-overlay" id="modal-overlay"></div>
+
+    <!-- Modal para Añadir/Editar Experiencia -->
+    <div class="modal" id="add-experience-modal">
+        <div class="modal-header">
+            <h2 class="modal-title">Añadir Experiencia Laboral</h2>
+            <button class="modal-close-btn" data-close-button>&times;</button>
+        </div>
+        <div class="modal-body">
+            <form action="#" class="edit-form">
+                <div class="form-group">
+                    <label for="exp-title">Cargo</label>
+                    <input type="text" id="exp-title" class="form-control" placeholder="Ej: Desarrollador Frontend">
+                </div>
+                <div class="form-group">
+                    <label for="exp-company">Empresa</label>
+                    <input type="text" id="exp-company" class="form-control" placeholder="Ej: Empresa Tecnológica S.A.C.">
+                </div>
+                <div class="form-group">
+                    <label for="exp-location">Ubicación</label>
+                    <input type="text" id="exp-location" class="form-control" placeholder="Ej: Lima, Perú">
+                </div>
+                <div class="form-group">
+                    <label for="exp-type">Tipo de Empleo</label>
+                    <select id="exp-type" class="form-control">
+                        <option>Seleccionar...</option>
+                        <option>Jornada Completa</option>
+                        <option>Media Jornada</option>
+                        <option>Prácticas</option>
+                        <option>Freelance</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="exp-start-date">Fecha de Inicio</label>
+                        <input type="month" id="exp-start-date" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="exp-end-date">Fecha de Fin</label>
+                        <input type="month" id="exp-end-date" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="exp-current">
+                    <label for="exp-current">Actualmente trabajo aquí.</label>
+                </div>
+                <div class="form-group">
+                    <label for="exp-description">Descripción y Logros</label>
+                    <textarea id="exp-description" class="form-control" rows="5" placeholder="Describe tus logros y responsabilidades clave. Usa viñetas para mayor claridad."></textarea>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-light-outline" data-close-button>Cancelar</button>
+            <button type="button" id="guardar-experiencia-btn" class="btn btn-dark-action">Guardar Experiencia</button>
+        </div>
+    </div>
+
+    <!-- Modal para Añadir/Editar Educación -->
+    <div class="modal" id="add-education-modal">
+        <div class="modal-header">
+            <h2 class="modal-title">Añadir Formación Académica</h2>
+            <button class="modal-close-btn" data-close-button>&times;</button>
+        </div>
+        <div class="modal-body">
+            <form action="#" class="edit-form">
+                <div class="form-group">
+                    <label for="edu-institution">Institución</label>
+                    <input type="text" id="edu-institution" class="form-control" placeholder="Ej: Universidad Nacional de Ingeniería">
+                </div>
+                <div class="form-group">
+                    <label for="edu-degree">Título o Carrera</label>
+                    <input type="text" id="edu-degree" class="form-control" placeholder="Ej: Ingeniería de Software">
+                </div>
+                <div class="form-group">
+                    <label for="edu-field">Campo de Estudio</label>
+                    <input type="text" id="edu-field" class="form-control" placeholder="Ej: Desarrollo de Software y Bases de Datos">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="edu-start-date">Fecha de Inicio</label>
+                        <input type="month" id="edu-start-date" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="edu-end-date">Fecha de Fin o Prevista</label>
+                        <input type="month" id="edu-end-date" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="edu-description">Descripción Adicional</label>
+                    <textarea id="edu-description" class="form-control" rows="4" placeholder="Menciona logros, proyectos o notas destacadas..."></textarea>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-light-outline" data-close-button>Cancelar</button>
+            <button type="button" id="guardar-formacion-btn" class="btn btn-dark-action">Guardar Formación</button>
+        </div>
+    </div>
+
+    <!-- Modal para Añadir/Editar Proyecto -->
+    <div class="modal" id="add-project-modal">
+        <div class="modal-header">
+            <h2 class="modal-title">Añadir Nuevo Proyecto</h2>
+            <button class="modal-close-btn" data-close-button>&times;</button>
+        </div>
+        <div class="modal-body">
+            <form action="#" class="edit-form">
+                <div class="form-group">
+                    <label for="project-title">Nombre del Proyecto</label>
+                    <input type="text" id="project-title" class="form-control" placeholder="Ej: Sistema de Gestión de Inventario">
+                </div>
+                <div class="form-group">
+                    <label for="project-association">Asociado con (Opcional)</label>
+                    <select id="project-association" class="form-control">
+                        <option>Proyecto personal</option>
+                        <option>Empresa Tecnológica S.A.C. (Desarrollador Senior)</option>
+                        <!-- Las experiencias laborales se cargarían aquí dinámicamente -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="project-tech">Tecnologías Usadas</label>
+                    <input type="text" id="project-tech" class="form-control" placeholder="Ej: Python, Flask, PostgreSQL, React">
+                </div>
+                <div class="form-group">
+                    <label for="project-link">Enlace al Proyecto</label>
+                    <input type="url" id="project-link" class="form-control" placeholder="https://github.com/tu-usuario/tu-repo">
+                </div>
+                <div class="form-group">
+                    <label for="project-description">Descripción del Proyecto</label>
+                    <textarea id="project-description" class="form-control" rows="5" placeholder="Describe el objetivo del proyecto y tus contribuciones..."></textarea>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-light-outline" data-close-button>Cancelar</button>
+            <button type="button" id="guardar-proyecto-btn" class="btn btn-dark-action">Guardar Proyecto</button>
+        </div>
+    </div>
+    
+    <!-- SCRIPTS AL FINAL -->
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <script src="/static/js/menu.js"></script>
+    <script src="/static/js/carousel.js"></script>
+    <script src="/static/js/skills_input.js"></script>
+    <script src="/static/js/tabs.js"></script>
+    <script src="/static/js/modal.js"></script>
+    <script src="/static/js/accordion.js"></script>
+    <script src="/static/js/dynamic_filters.js"></script>
+    <script src="/static/js/pipeline.js"></script>
+    <script src="/static/js/dashboard.js"></script>
+    <script src="/static/js/proposal.js"></script>
+</body>
+</html>

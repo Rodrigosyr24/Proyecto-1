@@ -1,0 +1,92 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="offer-page-container">
+    <!-- ======================= Columna Principal (Izquierda) ======================= -->
+    <main class="offer-main-content">
+        <div class="offer-card">
+            <!-- Encabezado de la Oferta -->
+            <header class="offer-header">
+                <div class="company-logo">
+                    <img src="{{ oferta.empresa.logo_url or '/static/img/logo_empresa_placeholder.png' }}" alt="Logo de la empresa {{ oferta.empresa.nombre_empresa }}">
+                </div>
+                <div class="header-info">
+                    <h1 class="offer-title">{{ oferta.titulo }}</h1>
+                    <p class="company-info">
+                        <a href="#" class="company-name">{{ oferta.empresa.nombre_empresa }}</a>
+                        <span class="location"><i class="fas fa-map-marker-alt"></i> {{ oferta.ubicacion }}</span>
+                    </p>
+                </div>
+            </header>
+
+            <!-- Cuerpo de la Oferta -->
+            <div class="offer-body">
+                <h2 class="section-heading">Descripción del Puesto</h2>
+                <p>{{ oferta.descripcion }}</p>
+
+                {% if oferta.responsabilidades %}
+                <h2 class="section-heading">Responsabilidades Principales</h2>
+                <ul>
+                    <!-- Asumimos que las responsabilidades están separadas por saltos de línea -->
+                    {% for resp in oferta.responsabilidades.split('\n') %}
+                        {% if resp.strip() %}
+                            <li>{{ resp.strip() }}</li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+                {% endif %}
+
+                <h2 class="section-heading">Requisitos</h2>
+                <ul>
+                    <li>Experiencia total mínima de {{ oferta.experiencia_total_min }} años.</li>
+                    <!-- Bucle para mostrar las habilidades requeridas -->
+                    {% for habilidad in oferta.habilidades_requeridas %}
+                    <li><strong>{{ habilidad.nombre }}</strong></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <!-- ======================= Columna Lateral (Derecha) ======================= -->
+    <aside class="offer-sidebar">
+        <!-- Tarjeta de Postulación (AHORA ES UN FORMULARIO) -->
+        <div class="sidebar-card">
+            <form action="{{ url_for('postular_oferta', oferta_id=oferta.id) }}" method="POST">
+                <button type="submit" class="btn btn-dark-action btn-block btn-large">Postular Ahora</button>
+            </form>
+            <button class="btn btn-light-outline btn-block"><i class="fas fa-star"></i> Guardar Oferta</button>
+        </div>
+
+        <!-- Tarjeta de Resumen -->
+        <div class="sidebar-card">
+            <h3 class="sidebar-title">Resumen del Empleo</h3>
+            <ul class="summary-list">
+                <li>
+                    <i class="fas fa-briefcase"></i>
+                    <div>
+                        <span>Tipo de Contrato</span>
+                        <strong>{{ oferta.tipo_contrato }}</strong>
+                    </div>
+                </li>
+                <li>
+                    <i class="fas fa-chart-line"></i>
+                    <div>
+                        <span>Experiencia</span>
+                        <strong>{{ oferta.experiencia_total_min }}+ años</strong>
+                    </div>
+                </li>
+                {% if oferta.salario_min and oferta.salario_max %}
+                <li>
+                    <i class="fas fa-money-bill-wave"></i>
+                    <div>
+                        <span>Salario</span>
+                        <strong>S/ {{ oferta.salario_min }} - S/ {{ oferta.salario_max }}</strong>
+                    </div>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </aside>
+</div>
+{% endblock %}

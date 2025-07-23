@@ -1,0 +1,108 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="company-profile-container">
+    <!-- Encabezado con Foto de Portada y Logo -->
+    <header class="company-profile-header">
+        <div class="cover-photo">
+            <img src="{{ empresa.portada_url or '/static/img/cover_placeholder.jpg' }}" alt="Foto de portada de la empresa">
+        </div>
+        <div class="header-main">
+            <div class="company-logo-profile">
+                <img src="{{ empresa.logo_url or '/static/img/logo_empresa_placeholder.png' }}" alt="Logo de la empresa">
+            </div>
+            <div class="company-header-info">
+                <h1>{{ empresa.nombre_empresa or 'Nombre de la Empresa' }}</h1>
+                <p>{{ empresa.sector or 'Sector' }} | {{ empresa.ubicacion or 'Ubicación' }}</p>
+            </div>
+            <div class="header-actions">
+                <!-- Este botón solo se mostraría si el usuario actual es el dueño del perfil -->
+                <a href="{{ url_for('editar_perfil_empresa') }}" class="btn btn-dark-action">Editar Perfil</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido del Perfil en dos columnas -->
+    <div class="company-profile-body">
+        <!-- Columna Principal (Izquierda) -->
+        <main class="company-main-content">
+            <div class="profile-card">
+                <h2>Acerca de Nosotros</h2>
+                <p>{{ empresa.descripcion or 'Añade una descripción para atraer al mejor talento.' }}</p>
+            </div>
+            
+            <!-- NUEVA SECCIÓN: Valoraciones y Reseñas -->
+            <div class="profile-card">
+                <div class="section-title-header">
+                    <h2>Valoraciones de Empleados</h2>
+                    <div class="overall-rating">
+                        <span class="rating-value">4.5</span>
+                        <div class="rating-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="rating-count">(Basado en 25 reseñas)</span>
+                    </div>
+                </div>
+                <div class="reviews-list">
+                    <!-- Las reseñas se cargarían aquí con un bucle for -->
+                    <div class="review-item">
+                        <div class="review-header">
+                            <span class="review-title">"Excelente ambiente de trabajo"</span>
+                            <div class="rating-stars-small"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        </div>
+                        <p class="review-body">"Una de las mejores empresas en las que he trabajado..."</p>
+                        <p class="review-author">- Ex-empleado (Desarrollador Senior)</p>
+                    </div>
+                </div>
+                <a href="#" class="see-all-link">Ver todas las reseñas</a>
+            </div>
+
+            <div class="profile-card">
+                <h2>Ofertas de Empleo Activas ({{ empresa.ofertas|length }})</h2>
+                <ul class="company-jobs-list">
+                    {% for oferta in empresa.ofertas %}
+                    <li>
+                        <a href="#">{{ oferta.titulo }}</a>
+                        <span>{{ oferta.ubicacion }}</span>
+                    </li>
+                    {% else %}
+                    <li>No hay ofertas activas en este momento.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </main>
+
+        <!-- Columna Lateral (Derecha) -->
+        <aside class="company-sidebar">
+            <div class="profile-card">
+                <h3>Información General</h3>
+                <ul class="company-details-list">
+                    {% if empresa.sitio_web %}
+                    <li><i class="fas fa-globe"></i><div><span>Sitio Web</span><a href="{{ empresa.sitio_web }}" target="_blank">{{ empresa.sitio_web }}</a></div></li>
+                    {% endif %}
+                    {% if empresa.sector %}
+                    <li><i class="fas fa-industry"></i><div><span>Sector</span><strong>{{ empresa.sector }}</strong></div></li>
+                    {% endif %}
+                    {% if empresa.tamaño %}
+                    <li><i class="fas fa-users"></i><div><span>Tamaño</span><strong>{{ empresa.tamaño }}</strong></div></li>
+                    {% endif %}
+                </ul>
+            </div>
+            <!-- NUEVA SECCIÓN: Contratados -->
+            <div class="profile-card">
+                <h3>Actividad de Contratación</h3>
+                <div class="hiring-stats">
+                    <div class="stat-item">
+                        <span class="stat-value">15</span>
+                        <span class="stat-label">Contratados vía AuraCV</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">85%</span>
+                        <span class="stat-label">Tasa de Respuesta</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+</div>
+{% endblock %}
