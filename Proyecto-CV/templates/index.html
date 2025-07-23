@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<section id="banner" class="hero-section">
+    <div class="container hero-content">
+      <h1 class="hero-title">Conectamos tu talento con las mejores oportunidades</h1>
+      <p class="hero-subtitle">Tu próximo gran paso profesional empieza aquí.
+        <br>Crea tu perfil o explora las ofertas de las empresas líderes.</p>
+      <div class="hero-actions">
+        <a href="{{ url_for('portal_candidatos') }}" class="btn btn-primary">Crea tu Perfil</a>
+        <a href="/portal-empresas" class="btn btn-secondary">Soy una Empresa</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="presentación" class="section-padded">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Quiénes Somos</h2>
+        <p class="section-lead">Conectando el futuro del trabajo, hoy.</p>
+      </div>
+      <div class="about-us-content">
+        <div class="about-us-text">
+          <p>
+            Nacimos de una idea simple: crear un espacio donde el talento y las oportunidades laborales pudieran
+            encontrarse de una manera más directa, eficiente y humana. Entendemos los desafíos que enfrentan tanto los
+            profesionales que buscan crecer como las empresas que necesitan al equipo perfecto para alcanzar sus metas.
+          </p>
+          <p>
+            Nuestra misión es ser el puente que une a ambos mundos, utilizando tecnología de vanguardia para facilitar
+            un proceso de selección transparente y justo. Más que una base de datos de CV's, somos una comunidad dedicada
+            al crecimiento profesional y al éxito empresarial.
+          </p>
+        </div>
+        <div class="about-us-image">
+          <img src="/static/img/oficina-moderna.jpg" alt="Equipo profesional colaborando en una oficina moderna" class="img-fluid rounded-corners">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="perfiles-destacados" class="section-dark section-padded">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title light-text">Perfiles Destacados</h2>
+        <p class="section-lead light-text">Conoce a algunos de los profesionales de nuestra comunidad.</p>
+      </div>
+      <div class="cv-carousel-window">
+        <div class="cv-carousel-track">
+          <div class="cv-card">
+            <img src="/static/img/perfil1.jpg" alt="Foto de Ana Gómez" class="cv-photo">
+            <h3 class="cv-name">Ana Gómez</h3>
+            <p class="cv-title">Diseñadora UX/UI Senior</p>
+            <div class="cv-skills"><span>Figma</span><span>Investigación</span><span>Prototipado</span></div>
+          </div>
+          <div class="cv-card">
+            <img src="/static/img/perfil2.jpg" alt="Foto de Carlos Vega" class="cv-photo">
+            <h3 class="cv-name">Carlos Vega</h3>
+            <p class="cv-title">Desarrollador Full-Stack</p>
+            <div class="cv-skills"><span>React</span><span>Node.js</span><span>PostgreSQL</span></div>
+          </div>
+          <div class="cv-card">
+            <img src="/static/img/perfil3.jpg" alt="Foto de Rafael Díaz" class="cv-photo">
+            <h3 class="cv-name">Carlos Vega</h3>
+            <p class="cv-title">Analista de Datos</p>
+            <div class="cv-skills"><span>Python</span><span>MySQL</span><span>PowerBI</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-dots"></div>
+    </div>
+  </section>
+
+{% endblock %}

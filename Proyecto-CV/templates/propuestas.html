@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="page-container">
+    <header class="page-header">
+        <h1>Propuestas de Empleo para Ti</h1>
+        <p>Estas empresas han visto tu perfil y creen que eres un buen candidato.</p>
+    </header>
+
+    <div class="proposals-list">
+        <!-- BUCLE PARA MOSTRAR CADA PROPUESTA REAL -->
+        {% for propuesta in propuestas %}
+        <div class="proposal-card">
+            <div class="proposal-header">
+                <img src="{{ propuesta.empresa.logo_url or '/static/img/logo_empresa_placeholder.png' }}" alt="Logo de la empresa" class="company-logo-small">
+                <div class="job-info">
+                    <!-- Podríamos añadir un título a la propuesta en el futuro -->
+                    <h2 class="job-title">Propuesta de {{ propuesta.empresa.nombre_empresa }}</h2>
+                    <p class="company-name">Enviada el {{ propuesta.fecha_envio.strftime('%d de %b, %Y') }}</p>
+                </div>
+            </div>
+            <div class="proposal-body">
+                <div class="recruiter-message">
+                    <p><strong>Mensaje del reclutador:</strong></p>
+                    <blockquote>{{ propuesta.mensaje }}</blockquote>
+                </div>
+            </div>
+            <div class="proposal-footer">
+                <a href="#" class="btn btn-light-outline">Rechazar</a>
+                <a href="#" class="btn btn-dark-action">Estoy Interesado</a>
+            </div>
+        </div>
+        {% else %}
+        <div class="empty-state-card" style="text-align: center; padding: 40px;">
+            <p>Aún no has recibido ninguna propuesta. ¡Asegúrate de que tu perfil esté completo y actualizado!</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
