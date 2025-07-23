@@ -1,0 +1,2852 @@
+/* ==========================================================================
+    Variables Globales del Sitio (Raíz)
+   ========================================================================== */
+
+/* 1. Importación de Fuentes Optimizada */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@400;500;700&display=swap');
+
+:root {
+    /* 2. Paleta de Colores Profesional y Neutra */
+
+    /* Colores primarios y de acento */
+    --color-primario: #0d6efd; /* Un azul profesional para acciones principales (botones, enlaces) */
+    --color-secundario: #6c757d; /* Un gris secundario para elementos menos importantes */
+    --color-terciario: #000000; /* Un negro terciario para cambiarlo por el color primario si gustamos */
+
+    /* Colores de texto */
+    --color-texto-principal: #212529; /* Casi negro, para máxima legibilidad en párrafos */
+    --color-texto-secundario: #495057; /* Un gris más suave para descripciones o texto de apoyo */
+    --color-enlace: var(--color-primario); /* Los enlaces usarán el color primario */
+    --color-enlace-hover: #0a58ca; /* Un azul más oscuro para el hover de los enlaces */
+
+    /* Colores de fondo y superficies */
+    --color-fondo: #f8f9fa;       /* Un gris muy claro para el fondo general de la página */
+    --color-superficie: #ffffff;   /* Blanco puro para tarjetas, modales y secciones destacadas */
+    --color-borde: #dee2e6;        /* Un gris claro para bordes sutiles y separadores */
+
+    /* Colores de feedback para alertas o notificaciones */
+    --color-exito: #198754;   /* Verde para confirmaciones */
+    --color-peligro: #dc3545; /* Rojo para errores o alertas */
+    --color-aviso: #ffc107;   /* Ámbar para advertencias */
+
+    /* Otros */
+    --color-sombra: rgba(0, 0, 0, 0.075); /* Una sombra muy sutil para dar profundidad */
+    --color-overlay: rgba(33, 37, 41, 0.7); /* Overlay oscuro y profesional para banners */
+
+    /* 3. Tipografía Principal (Consistente) */
+    --fuente-parrafos: 'Lato', sans-serif;         /* Fuente principal para todo el cuerpo de texto */
+    --fuente-titulos: 'Montserrat', sans-serif; /* Fuente única para todos los títulos y encabezados */
+
+    /* 4. Medidas y Estilos Reutilizables */
+    --radio-borde: 0.375rem; /* El radio para redondear esquinas de botones y tarjetas (6px) */
+    --transicion-rapida: all 0.2s ease-in-out; /* Para animaciones suaves y rápidas */
+
+    /* 5. Colores para el página publicar ofertas */
+    --color-fondo-cuadros: #b4b4b4; /* gris oscuro para mis cuadros del apartado habilidades en publicar oferas*/
+}
+
+/* General */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    /* Fuente para párrafos y texto general */
+    font-family: 'Lato', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    /* Fuente para todos los títulos */
+    font-family: 'Montserrat', sans-serif;
+}
+
+.auth-page-dark {
+    --color-fondo: black;      /* Fondo negro profundo */
+    --color-superficie: #ffffff;   /* Tarjetas en blanco puro */
+    --color-borde: #dee2e6;        /* Borde gris claro para los inputs */
+    --color-texto-principal: #212529; /* Texto principal negro, para leer sobre blanco */
+    --color-texto-secundario: #6c757d; /* Texto secundario en gris oscuro */
+    --color-sombra: rgba(0, 0, 0, 0.1); /* Sombra oscura sutil para las tarjetas blancas */
+    --color-borde-1: #121212;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Cabecera */
+.fijar-cabecera {
+    width: 100%;
+    background-color: #000000;
+    padding: 5px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo img {
+    height: 70px; /* Ajusta la altura del logo según necesites */
+}
+
+/* Buscador */
+.nav-buscador {
+    display: flex;
+    align-items: center;
+}
+
+.nav-buscador input {
+    padding: 8px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px 0 0 5px;
+    font-size: 16px;
+    color: #555;
+}
+
+.nav-buscador button {
+    background-color: #eee;
+    color: #555;
+    border: 1px solid #ddd;
+    border-left: none;
+    padding: 8px 15px;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.nav-buscador button:hover {
+    background-color: #ddd;
+}
+
+/* Menú de Navegación */
+.nav-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.nav-menu-item {
+    margin-left: 20px;
+}
+
+.nav-menu-link {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-menu-link:hover {
+    background-color: #eee;
+    color: #000;
+}
+
+/* Toggle del Menú (para dispositivos móviles) - Esto lo mantendremos por ahora */
+.menu-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: none;
+    padding: 0;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin: 5px auto;
+    transition: all 0.3s ease-in-out;
+}
+
+/* ==========================================================================
+    Estilos de la Sección del Banner (Hero Section)
+   ========================================================================== */
+.hero-section {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--color-superficie);
+    height: 95vh;
+    min-height: 500px;
+    z-index: 1; /* Podemos bajar esto a 1, no necesita ser 2 */
+
+    /* --- LA LÍNEA CLAVE A AÑADIR --- */
+    isolation: isolate; /* <-- Esto crea un nuevo contexto de apilamiento */
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Ruta corregida según tu captura de pantalla */
+    background: linear-gradient(var(--color-overlay), var(--color-overlay)), url('/static/img/banner-profesional.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index: -1; /* Ahora este -1 se refiere al contexto de .hero-section, no a toda la página */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px; /* Limita el ancho del contenido para mejor legibilidad */
+}
+
+.hero-title {
+    /* Suppress CssUnresolvedCustomProperty */
+    font-family: var(--fuente-titulos);
+    font-size: 3.5rem; /* Tamaño de fuente grande para el título principal */
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.hero-subtitle {
+    font-family: var(--fuente-parrafos);
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-actions .btn {
+    margin: 0 0.5rem;
+    padding: 12px 28px;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ==========================================================================
+    Estilos de la Sección de Presentación (Quiénes Somos)
+   ========================================================================== */
+.section-padded {
+    padding: 80px 0;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-title {
+    font-family: var(--fuente-titulos);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-texto-principal);
+    margin-bottom: 0.5rem;
+}
+
+.section-lead {
+    font-family: var(--fuente-parrafos);
+    font-size: 1.1rem;
+    color: var(--color-texto-secundario);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.about-us-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Crea las dos columnas */
+    gap: 50px; /* Espacio entre el texto y la imagen */
+    align-items: center;
+}
+
+.about-us-text p {
+    font-family: var(--fuente-parrafos);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-texto-secundario);
+    margin-bottom: 1.5rem;
+}
+
+.about-us-image .img-fluid {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.rounded-corners {
+    border-radius: var(--radio-borde);
+    box-shadow: 0 4px 15px var(--color-sombra);
+}
+
+/* ==========================================================================
+    Estilos de los Botones (Reutilizables)
+   ========================================================================== */
+.btn {
+    text-decoration: none;
+    border-radius: var(--radio-borde);
+    transition: var(--transicion-rapida);
+    display: inline-block;
+    border: 1px solid transparent;
+}
+
+.btn-primary {
+    background-color: var(--color-primario);
+    color: var(--color-superficie);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-enlace-hover);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--color-superficie);
+    border-color: var(--color-superficie);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-superficie);
+    color: var(--color-texto-principal);
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+    Estilos de la Sección de Perfiles Destacados (Carrusel)
+   ========================================================================== */
+.section-dark {
+    background-color: var(--color-texto-principal); /* Fondo negro */
+}
+
+.light-text {
+    color: var(--color-superficie); /* Texto blanco para secciones oscuras */
+}
+
+.section-dark .section-lead {
+    color: #adb5bd; /* Un gris claro para el subtítulo en fondo oscuro */
+}
+
+.cv-carousel-window {
+    position: relative;
+    width: 100%;
+    overflow: hidden; /* MUY IMPORTANTE: Es la "ventana" que oculta los carros que están fuera */
+    margin: 0 auto;
+}
+
+.cv-carousel-track {
+    display: flex; /* LA CARRETERA: Pone todos los carros en una línea horizontal */
+    transition: transform 0.5s ease-in-out; /* La animación del deslizamiento que ya tenías */
+}
+
+.cv-card {
+    /* El ancho de cada tarjeta. 25% para mostrar 4 a la vez. Ajusta si quieres mostrar más o menos */
+    flex: 0 0 calc(25% - 20px); 
+    margin: 0 10px;
+    /* El resto de tus estilos para la tarjeta (fondo blanco, etc.) */
+    background-color: var(--color-superficie);
+    border-radius: var(--radio-borde);
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+    transition: var(--transicion-rapida);
+    transform: translateZ(0);
+}
+
+.cv-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.15);
+}
+
+.cv-photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%; /* Foto redonda */
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 3px solid var(--color-borde);
+}
+
+.cv-name {
+    font-family: var(--fuente-titulos);
+    color: var(--color-texto-principal);
+    font-size: 1.25rem;
+    margin: 10px 0 5px 0;
+}
+
+.cv-title {
+    font-family: var(--fuente-parrafos);
+    color: var(--color-texto-secundario);
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.cv-skills span {
+    display: inline-block;
+    background-color: var(--color-fondo);
+    color: var(--color-texto-secundario);
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    margin: 2px;
+}
+
+/* Indicadores (los circulitos) */
+.carousel-dots {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background-color: #6c757d; /* Circulito gris */
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dot.active {
+    background-color: var(--color-superficie); /* Circulito blanco cuando está activo */
+}
+
+/* ==========================================================================
+    Estilos para la Página de Autenticación (Login/Register)
+   ========================================================================== */
+
+/* Contenedor Principal que centra todo en la página */
+.auth-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: var(--color-fondo); /* Usará el color de fondo correspondiente al tema */
+    padding: 50px 20px;
+    transition: background-color 0.3s ease;
+}
+
+/* Envoltura para las dos columnas */
+.auth-wrapper {
+    display: flex;
+    gap: 30px; /* Espacio entre las dos tarjetas */
+    width: 100%;
+    max-width: 900px;
+}
+
+/* Tarjeta individual de Login o Registro */
+.auth-card {
+    flex: 1;
+    background-color: var(--color-superficie); /* Usará el color de superficie del tema */
+    color: var(--color-texto-principal); /* El texto usará el color principal del tema */
+    padding: 40px;
+    border-radius: var(--radio-borde);
+    box-shadow: 0 4px 25px var(--color-sombra);
+    border: 1px solid var(--color-borde);
+}
+
+.auth-title {
+    font-family: var(--fuente-titulos);
+    font-size: 1.75rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--color-texto-principal);
+    margin-bottom: 10px;
+}
+
+.auth-subtitle {
+    text-align: center;
+    color: var(--color-texto-secundario);
+    margin-bottom: 30px;
+}
+
+/* Estilos para los formularios */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--color-texto-secundario);
+}
+
+.form-control {
+    width: 97%;
+    padding: 12px 5px; /* Cambio realizado de 15px a 0*/ 
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-borde);
+    font-family: var(--fuente-parrafos);
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--color-borde-1);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    /* Reemplazamos la sombra azul por un "brillo" blanco muy sutil */
+    box-shadow: 0 0 0 4px rgba(59, 59, 61, 34); 
+    /* Opcional: Hacemos el fondo del input un poco más claro al hacerle foco */
+    background-color: var(--color-superficie); 
+}
+
+.btn-block {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.forgot-password {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.forgot-password a {
+    color: var(--color-primario);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+/* Estilos para el inicio de sesión con redes sociales */
+.social-auth {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.social-auth-text {
+    color: var(--color-texto-secundario);
+    position: relative;
+    margin-bottom: 20px;
+}
+
+/* Línea divisoria */
+.social-auth-text::before,
+.social-auth-text::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 35%;
+    height: 1px;
+    background-color: var(--color-borde);
+}
+
+.social-auth-text::before { left: 0; }
+.social-auth-text::after { right: 0; }
+
+
+.social-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn-social {
+    padding: 10px;
+    border-radius: var(--radio-borde);
+    text-decoration: none;
+    font-weight: 500;
+    border: 1px solid var(--color-borde);
+    transition: var(--transicion-rapida);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-social i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+.btn-social.google {
+    background-color: #fff;
+    color: #444;
+}
+.btn-social.google:hover {
+    background-color: #f1f1f1;
+}
+
+.btn-social.linkedin {
+    background-color: #0077B5;
+    color: #fff;
+    border-color: #0077B5;
+}
+.btn-social.linkedin:hover {
+    background-color: #005e94;
+}
+
+/* ==========================================================================
+    Estilos de Botones para el Tema Oscuro de Autenticación
+   ========================================================================== */
+
+/* Estilo para los botones de acción principales (Registrarse / Iniciar Sesión) */
+.auth-page-dark .btn-block {
+    background-color: #000000; /* Fondo negro */
+    color: #ffffff;           /* Letras blancas */
+    border: 1px solid #000000;
+    transition: var(--transicion-rapida);
+}
+
+/* Efecto hover que pediste */
+.auth-page-dark .btn-block:hover {
+    background-color: #ffffff; /* Fondo blanco */
+    color: #000000;           /* Letras negras */
+    border: 1px solid #000000;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1); /* Sombreado de "brillo" blanco */
+}
+
+/* Estilo para los botones de redes sociales */
+.auth-page-dark .btn-social {
+    background-color: #000000;
+    color: #ffffff;
+    border-color: #000000;
+}
+
+/* Efecto hover para los botones de redes sociales */
+.auth-page-dark .btn-social:hover {
+    background-color: #ffffff;
+    color: #000000;
+    border-color: #000000;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+}
+
+/* Hacemos que el enlace de "¿Olvidaste tu contraseña?" sea visible */
+.auth-page-dark .forgot-password a {
+    color: #495057; /* Un gris oscuro para que sea legible sobre el fondo blanco */
+}
+
+/* ==========================================================================
+    Anulación del efecto :focus para los inputs en el Tema Oscuro
+   ========================================================================== */
+
+.auth-page-dark .form-control:focus {
+    /* En lugar de azul, el borde se pondrá de un gris neutro */
+    border-color: #000000; 
+    
+    /* Reemplazamos la sombra azul por un "brillo" blanco muy sutil */
+    box-shadow: 0 0 0 4px rgba(59, 59, 61, 34); 
+    
+    /* Opcional: Hacemos el fondo del input un poco más claro al hacerle foco */
+    background-color: var(--color-superficie); 
+}
+
+/* ==========================================================================
+    Estilos para la Página de Perfil de Usuario ("Mi CV")
+   ========================================================================== */
+
+.profile-page-container {
+    display: grid;
+    grid-template-columns: 320px 1fr; /* Columna lateral de 320px y el resto para el contenido */
+    gap: 30px;
+    padding: 30px;
+    background-color: var(--color-fondo);
+    max-width: 1400px;
+    margin: 120px auto 30px auto; /* Margen superior para compensar el header fijo */
+}
+
+/* Columna Lateral */
+.profile-sidebar .profile-header-card, .profile-info-card {
+    background-color: var(--color-superficie);
+    border-radius: var(--radio-borde);
+    padding: 25px;
+    box-shadow: 0 2px 10px var(--color-sombra);
+    margin-bottom: 25px;
+}
+
+.profile-picture {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto 20px auto;
+    border: 5px solid var(--color-borde);
+}
+
+.profile-name {
+    text-align: center;
+    font-size: 1.75rem;
+    color: var(--color-texto-principal);
+    margin: 0;
+}
+
+.profile-jobtitle {
+    text-align: center;
+    font-size: 1rem;
+    color: var(--color-texto-secundario);
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+.profile-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.btn-secondary-light { /* Botón secundario para fondos claros */
+    background-color: #f0f0f0;
+    color: #333;
+    text-align: center;
+}
+.btn-secondary-light:hover {
+    background-color: #e0e0e0;
+}
+
+.info-card-title {
+    font-size: 1.25rem;
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--color-borde);
+    padding-bottom: 10px;
+}
+
+.contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    color: var(--color-texto-secundario);
+}
+.contact-list li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+.contact-list i {
+    margin-right: 15px;
+    width: 20px;
+    text-align: center;
+    color: var(--color-texto-principal);
+}
+
+.skills-list span {
+    display: inline-block;
+    background-color: #e9ecef;
+    color: #495057;
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    margin: 4px;
+}
+
+/* Contenido Principal */
+.profile-main-content .profile-section-card {
+    background-color: var(--color-superficie);
+    border-radius: var(--radio-borde);
+    padding: 30px;
+    box-shadow: 0 2px 10px var(--color-sombra);
+    margin-bottom: 25px;
+}
+
+.section-title-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--color-borde);
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+}
+.section-title-header h2 {
+    margin: 0;
+    font-size: 1.75rem;
+}
+
+.btn-edit {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: var(--color-texto-secundario);
+    padding: 5px;
+}
+.btn-edit:hover {
+    color: var(--color-primario);
+}
+
+.experience-item {
+    margin-bottom: 25px;
+}
+.experience-item:last-child {
+    margin-bottom: 0;
+}
+
+.item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+.item-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0;
+}
+.item-date {
+    font-size: 0.9rem;
+    color: var(--color-texto-secundario);
+}
+.item-subtitle {
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0 0 10px 0;
+}
+
+/* ==========================================================================
+    Estilos Adicionales para Enlaces Profesionales en Perfil
+   ========================================================================== */
+
+/* Estilo para los enlaces dentro de la lista de contacto */
+.contact-list a {
+    text-decoration: none;
+    color: var(--color-texto-secundario);
+    transition: var(--transicion-rapida);
+}
+
+.contact-list a:hover {
+    color: var(--color-primario);
+    text-decoration: underline;
+}
+
+/* Línea separadora para organizar mejor los enlaces */
+.link-separator {
+    height: 1px;
+    background-color: var(--color-borde);
+    margin: 15px 0;
+    list-style: none; /* Para que no muestre un punto de lista */
+}
+
+/* ==========================================================================
+    Estilos para el Botón "Añadir Nueva Sección"
+   ========================================================================== */
+
+.btn-add-section {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; /* Espacio entre el icono y el texto */
+    background-color: #000; /* Negro */
+    color: #fff; /* Blanco */
+    border: 1px solid #000;
+    border-radius: var(--radio-borde);
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--transicion-rapida);
+    margin-top: 20px; /* Espacio superior para separarlo del contenido */
+}
+
+.btn-add-section i {
+    font-size: 1.2rem; /* Tamaño del icono de más */
+}
+
+.btn-add-section:hover {
+    background-color: #fff; /* Blanco al pasar el mouse */
+    color: #000; /* Negro al pasar el mouse */
+    border-color: #000;
+}
+
+/* ==========================================================================
+Estilos para el Botón "Editar Perfil" (Dark Action Button)
+========================================================================== */
+.btn-dark-action {
+    display: inline-block;
+    background-color: #000; /* Negro */
+    color: #fff; /* Blanco */
+    border: 1px solid #000;
+    border-radius: var(--radio-borde);
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--transicion-rapida);
+    text-align: center; /* Centrar el texto dentro del botón */
+}
+
+.btn-dark-action:hover {
+    background-color: #ffffff; /* Fondo blanco */
+    color: #000000;           /* Letras negras */
+    border-color: #000000;     /* Borde negro */
+}
+
+/*  ==========================================================================
+    Estilo para Botón Secundario "Light Outline" (ej. Descargar PDF)
+    ========================================================================== */
+
+.btn-light-outline {
+    display: inline-block;
+    /* --- ESTADO NORMAL --- */
+    background-color: #ffffff; /* Fondo blanco */
+    color: #000000;           /* Letras negras */
+    border: 1px solid #000000; /* Borde negro */
+    
+    /* --- ESTILOS GENERALES --- */
+    border-radius: var(--radio-borde);
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--transicion-rapida);
+    text-align: center;
+}
+
+/* --- ESTADO HOVER --- */
+.btn-light-outline:hover {
+    background-color: #000000; /* Fondo negro */
+    color: #ffffff;           /* Letras blancas */
+    border-color: #000000;     /* Borde negro (se mantiene para consistencia) */
+}
+
+/* ==========================================================================
+    Estilos para el Panel de Empresa (Dashboard) - Versión ATS
+   ========================================================================== */
+
+.dashboard-container {
+    display: grid;
+    grid-template-columns: 280px 1fr 280px; /* Columnas ajustadas */
+    gap: 30px;
+    padding: 30px;
+    background-color: var(--color-fondo);
+    max-width: 1600px;
+    margin: 120px auto 30px auto;
+}
+
+/* Estilos para las tarjetas de las columnas laterales */
+.filter-card, .actions-card {
+    background-color: var(--color-superficie);
+    border-radius: var(--radio-borde);
+    padding: 25px;
+    box-shadow: 0 2px 10px var(--color-sombra);
+    margin-bottom: 25px;
+}
+
+/* ==========================================================================
+   Estilos para la Lista de Ofertas en el Dashboard
+   ========================================================================== */
+
+.dashboard-offers-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espacio entre cada oferta */
+}
+
+.dashboard-offers-list li {
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--color-borde);
+}
+
+.dashboard-offers-list li:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.dashboard-offers-list a {
+    text-decoration: none;
+    color: var(--color-texto-principal);
+    font-weight: 700;
+    font-size: 1rem;
+    display: block;
+    margin-bottom: 5px;
+    transition: var(--transicion-rapida);
+}
+
+.dashboard-offers-list a:hover {
+    color: var(--color-primario);
+}
+
+.dashboard-offers-list .applicant-count {
+    font-size: 0.9rem;
+    color: var(--color-texto-secundario);
+}
+
+/* Columna de Filtros (Izquierda) */
+.filter-title, .actions-title {
+    font-size: 1.25rem;
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--color-borde);
+    padding-bottom: 15px;
+    color: var(--color-texto-principal);
+}
+.filter-group { margin-bottom: 20px; }
+.filter-group label {
+    display: block;
+    font-weight: 500;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    color: var(--color-texto-secundario);
+}
+.range-inputs { display: flex; align-items: center; gap: 10px; }
+.range-inputs span { color: var(--color-texto-secundario); }
+
+/* Contenido Principal (Centro) */
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--color-borde);
+}
+.results-header h2 { margin: 0; font-size: 1.75rem; color: var(--color-texto-principal); }
+
+/* ==========================================================================
+    Estilos para el Menú Desplegable "Ordenar por"
+   ========================================================================== */
+
+.sort-options .form-control {
+    width: 180px; /* Ancho del menú desplegable */
+    padding: 12px 15px; /* Largo (relleno interior) */
+    background-color: var(--color-superficie);
+    border: 1px solid var(--color-texto-secundario);
+    border-radius: var(--radio-borde);
+    color: var(--color-texto-principal);
+    font-family: var(--fuente-parrafos);
+    font-size: 0.9rem;
+}
+
+/* ==========================================================================
+    Anulación del efecto :focus para el menú "Ordenar por"
+   ========================================================================== */
+
+.sort-options .form-control:focus {
+    /* En lugar de azul, el borde se pondrá de un gris neutro */
+    border-color: #000000; 
+    
+    /* Reemplazamos la sombra azul por un "brillo" blanco muy sutil */
+    box-shadow: 0 0 0 4px rgba(59, 59, 61, 34); 
+    
+    /* Opcional: Hacemos el fondo del input un poco más claro al hacerle foco */
+    background-color: var(--color-superficie); 
+}
+
+.sort-options label { margin-right: 10px; color: var(--color-texto-secundario); }
+
+/* --- Estilos para el carrusel de resultados --- */
+.scrollable-candidates-wrapper {
+    overflow-x: auto; /* Habilita el scroll horizontal */
+    padding-bottom: 15px; /* Espacio para la barra de scroll */
+}
+.candidates-row {
+    display: flex;
+    flex-wrap: nowrap; /* Evita que las tarjetas salten a la siguiente línea */
+    gap: 25px;
+    padding-bottom: 5px;
+}
+.candidate-card {
+    flex: 0 0 260px; /* Ancho fijo para cada tarjeta */
+    background-color: var(--color-superficie);
+    border-radius: var(--radio-borde);
+    padding: 20px;
+    box-shadow: 0 2px 10px var(--color-sombra);
+    text-align: center;
+    transition: var(--transicion-rapida);
+    border: 1px solid var(--color-borde-1);
+}
+
+.candidate-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px var(--color-sombra); }
+.candidate-picture { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 4px solid var(--color-borde); }
+.candidate-name { font-size: 1.25rem; color: var(--color-texto-principal); margin: 0 0 5px 0; }
+.candidate-title { font-size: 0.9rem; color: var(--color-texto-secundario); margin-bottom: 15px; min-height: 40px; }
+.candidate-skills { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; margin-bottom: 20px; min-height: 50px; }
+.candidate-skills span { background-color: #e9ecef; color: #495057; padding: 4px 10px; border-radius: 15px; font-size: 0.8rem; }
+
+/* --- Estilos para la sección "Mis Contratados" --- */
+.hired-header { margin-top: 40px; }
+.hired-candidates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+.hired-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: var(--color-superficie);
+    padding: 15px;
+    border-radius: var(--radio-borde);
+    border: 1px solid var(--color-borde);
+}
+.hired-picture { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; }
+.hired-name { margin: 0 0 4px 0; font-size: 1rem; color: var(--color-texto-principal); }
+.hired-title { margin: 0; font-size: 0.85rem; color: var(--color-texto-secundario); }
+
+/* Panel de Acciones (Derecha) */
+.btn-large { padding: 12px 0px; font-size: 1rem; }
+.btn-large i { margin-right: 8px; }
+.offer-card .offer-details { margin-top: 15px; }
+.offer-title { font-size: 1.1rem; margin: 0 0 10px 0; }
+.offer-location { color: var(--color-texto-secundario); margin-bottom: 15px; font-size: 0.9rem; }
+.offer-location i { margin-right: 8px; }
+.offer-stats { display: flex; justify-content: space-between; color: var(--color-texto-secundario); font-size: 0.9rem; margin-bottom: 20px; }
+.offer-stats i { margin-right: 5px; }
+.offers-list { list-style: none; padding: 0; margin: 0; }
+.offers-list li { padding: 15px 0; border-bottom: 1px solid var(--color-borde); }
+.offers-list li:last-child { border-bottom: none; }
+.offers-list a { text-decoration: none; color: var(--color-texto-principal); font-weight: 500; transition: var(--transicion-rapida); }
+.offers-list a:hover { color: var(--color-primario); }
+.offer-applicants { display: block; font-size: 0.85rem; color: var(--color-texto-secundario); margin-top: 5px; }
+
+/* ==========================================================================
+    Estilos para la Página "Mis Postulaciones"
+   ========================================================================== */
+
+.page-container {
+    max-width: 900px;
+    margin: 120px auto 50px auto; /* Margen superior para compensar el header fijo */
+    padding: 0 20px;
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--color-borde);
+}
+
+.page-header h1 {
+    font-size: 2.5rem;
+    color: var(--color-texto-principal);
+    margin-bottom: 10px;
+}
+
+.page-header p {
+    font-size: 1.1rem;
+    color: var(--color-texto-secundario);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.applications-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.application-card {
+    background-color: var(--color-superficie);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-borde);
+    box-shadow: 0 4px 15px var(--color-sombra);
+    overflow: hidden; /* Para que los bordes redondeados se apliquen bien */
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    background-color: #f8f9fa; /* Un fondo ligeramente diferente para el encabezado */
+    border-bottom: 1px solid var(--color-borde);
+}
+
+.job-title {
+    margin: 0 0 5px 0;
+    font-size: 1.5rem;
+    color: var(--color-texto-principal);
+}
+
+.company-name {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--color-texto-secundario);
+}
+.company-name a {
+    color: var(--color-primario);
+    text-decoration: none;
+    font-weight: 500;
+}
+.company-name a:hover {
+    text-decoration: underline;
+}
+
+.application-date {
+    font-size: 0.9rem;
+    color: var(--color-texto-secundario);
+    text-align: right;
+}
+
+.card-body {
+    padding: 30px 25px;
+}
+
+.card-footer {
+    padding: 15px 25px;
+    text-align: right;
+    background-color: #f8f9fa;
+    border-top: 1px solid var(--color-borde);
+}
+
+/* --- Estilos para el Tracker de Estado --- */
+.status-tracker {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.status-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 80px;
+    color: #adb5bd; /* Color por defecto (inactivo) */
+    transition: color 0.3s ease;
+}
+
+.step-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #e9ecef; /* Fondo del icono inactivo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    border: 2px solid #dee2e6;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.step-label {
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.status-line {
+    flex-grow: 1;
+    height: 4px;
+    background-color: #e9ecef; /* Línea inactiva */
+    margin: 18px 0;
+    transition: background-color 0.3s ease;
+}
+
+/* Estilos para el estado ACTIVO */
+.status-step.active {
+    color: var(--color-terciario); /* Color del texto activo */
+}
+.status-step.active .step-icon {
+    background-color: var(--color-terciario); /* Fondo del icono activo */
+    color: #fff;
+    border-color: var(--color-terciario);
+}
+.status-step.active + .status-line {
+    background-color: var(--color-terciario); /* Línea activa */
+}
+
+/* ==========================================================================
+    Estilos para la Página "Publicar Nueva Oferta"
+   ========================================================================== */
+
+.form-container {
+    max-width: 800px;
+}
+
+.publish-form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.form-section-card {
+    background-color: var(--color-superficie);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-borde);
+    padding: 30px;
+    box-shadow: 0 4px 15px var(--color-sombra);
+}
+
+.form-section-title {
+    font-size: 1.5rem;
+    margin-top: 0;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--color-borde);
+    color: var(--color-texto-principal);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.form-text {
+    font-size: 0.85rem;
+    color: var(--color-texto-secundario);
+    margin-top: 8px;
+    display: block;
+}
+
+/* ==========================================================================
+    Estilos para Componentes Dinámicos (Habilidades e Idiomas) - DISEÑO REFINADO
+   ========================================================================== */
+
+.form-divider {
+    border: none;
+    border-top: 1px solid var(--color-borde);
+    margin: 30px 0;
+}
+
+/* El contenedor principal que recupera el estilo que te gustaba */
+.dynamic-input-wrapper {
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-borde);
+    padding: 10px;
+    background-color: #fff; /* Fondo blanco para el contenedor */
+}
+
+/* La lista de items añadidos (las "etiquetas") */
+.dynamic-items-list {
+    display: flex;
+    flex-wrap: wrap; /* Permite que las etiquetas pasen a la siguiente línea */
+    gap: 10px;
+    margin-bottom: 10px; /* Espacio entre las etiquetas y el campo de texto */
+}
+
+.dynamic-item {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-fondo-cuadros);
+    color: black; /* Color del texto de las etiquetas */
+    padding: 8px 15px;
+    border-radius: 15px; /* Bordes redondeados para las etiquetas */
+    font-size: 1rem;
+    border: none; /* Quitamos el borde anterior */
+}
+
+.dynamic-item span {
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+.item-options {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.item-input, .item-select {
+    width: 90px;
+    padding: 5px 8px;
+    border: 1px solid #ced4da;
+    border-radius: 10px;
+    font-size: 0.85rem;
+}
+
+.btn-remove-item {
+    background: none;
+    border: none;
+    color:black;
+    cursor: pointer;
+    font-size: 1.4rem;
+    line-height: 1;
+}
+.btn-remove-item:hover {
+    color: var(--color-peligro);
+}
+
+/* El contenedor para el input y el botón de añadir */
+.dynamic-add-container {
+    display: flex;
+    gap: 10px;
+}
+
+/* Hacemos que el input principal no tenga bordes para que se fusione con el contenedor */
+
+
+.btn-add-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #e9ecef;
+    color: #495057;
+    border: 1px solid #ced4da;
+    border-radius: var(--radio-borde);
+    padding: 0 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transicion-rapida);
+}
+.btn-add-item:hover {
+    background-color: #d8dde2;
+}
+
+/* ==========================================================================
+    Estilos para la Página "Detalles de la Oferta"
+   ========================================================================== */
+
+.offer-page-container {
+    display: grid;
+    grid-template-columns: 1fr 320px; /* Columna principal flexible y sidebar de ancho fijo */
+    gap: 30px;
+    max-width: 1200px;
+    margin: 120px auto 50px auto; /* Margen superior para compensar el header fijo */
+    padding: 0 20px;
+    align-items: flex-start; /* Alinea las columnas en la parte superior */
+}
+
+/* Columna Principal */
+.offer-main-content .offer-card {
+    background-color: var(--color-superficie);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-borde);
+    padding: 40px;
+    box-shadow: 0 4px 15px var(--color-sombra);
+}
+
+.offer-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 25px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid var(--color-borde);
+}
+
+.company-logo img {
+    width: 80px;
+    height: 80px;
+    border-radius: var(--radio-borde);
+    border: 1px solid var(--color-borde);
+}
+
+.offer-title {
+    font-size: 2.25rem;
+    margin: 0 0 10px 0;
+    color: var(--color-texto-principal);
+}
+
+.company-info {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--color-texto-secundario);
+}
+.company-info .company-name {
+    color: var(--color-primario);
+    text-decoration: none;
+    font-weight: 500;
+}
+.company-info .company-name:hover {
+    text-decoration: underline;
+}
+.company-info .location {
+    margin-left: 15px;
+}
+.company-info .location i {
+    margin-right: 5px;
+}
+
+.offer-body .section-heading {
+    font-size: 1.5rem;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    color: var(--color-texto-principal);
+}
+
+.offer-body p, .offer-body ul {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-texto-secundario);
+}
+
+.offer-body ul {
+    padding-left: 20px;
+}
+
+/* Columna Lateral */
+.offer-sidebar .sidebar-card {
+    background-color: var(--color-superficie);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-borde);
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 15px var(--color-sombra);
+}
+
+.sidebar-card .btn {
+    width: 100%;
+    margin-bottom: 10px;
+}
+.sidebar-card .btn:last-child {
+    margin-bottom: 0;
+}
+
+.sidebar-title {
+    font-size: 1.25rem;
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--color-borde);
+}
+
+.summary-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.summary-list li {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+.summary-list li:last-child {
+    margin-bottom: 0;
+}
+.summary-list i {
+    font-size: 1.2rem;
+    color: var(--color-texto-secundario);
+    width: 20px;
+}
+.summary-list span {
+    display: block;
+    color: var(--color-texto-secundario);
+}
+.summary-list strong {
+    color: var(--color-texto-principal);
+    font-weight: 500;
+}
+
+/* ==========================================================================
+    Estilos para la Página de Perfil de Empresa (Versión Mejorada)
+   ========================================================================== */
+
+.company-profile-container {
+    max-width: 1100px;
+    margin: 100px auto 50px auto;
+}
+
+/* Encabezado del Perfil */
+.company-profile-header {
+    background-color: var(--color-superficie);
+    /* Usamos valores específicos para cada esquina */
+    border-top-left-radius: 16px;  /* <-- Curva superior izquierda */
+    border-top-right-radius: 16px; /* <-- Curva superior derecha */
+    border-bottom-left-radius: 0;  /* <-- Esquina inferior recta */
+    border-bottom-right-radius: 0; /* <-- Esquina inferior recta */
+    box-shadow: 0 4px 15px var(--color-sombra);
+    border: 1px solid var(--color-borde);
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+.cover-photo img { 
+    width: 100%; 
+    height: 250px; 
+    object-fit: cover; 
+}
+
+.header-main {
+    display: flex;
+    align-items: flex-end;
+    padding: 0 30px 25px 30px;
+    position: relative;
+    margin-top: -80px;
+}
+
+.company-logo-profile {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    border: 5px solid var(--color-superficie);
+    background-color: var(--color-superficie);
+    box-shadow: 0 4px 15px var(--color-sombra);
+    flex-shrink: 0;
+}
+.company-logo-profile img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+.company-header-info { margin-left: 25px; flex-grow: 1; }
+.company-header-info h1 { font-size: 2.5rem; margin: 0 0 5px 0; color: var(--color-texto-principal); }
+.company-header-info p { font-size: 1.1rem; margin: 0; color: var(--color-texto-secundario); }
+.header-actions { margin-left: auto; }
+
+/* Cuerpo del Perfil */
+.company-profile-body {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 30px;
+    align-items: flex-start;
+}
+.profile-card {
+    background-color: var(--color-superficie);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-borde);
+    padding: 30px;
+    box-shadow: 0 4px 15px var(--color-sombra);
+    margin-bottom: 25px;
+}
+.profile-card h2 { font-size: 1.5rem; margin-top: 0; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid var(--color-borde); }
+.profile-card p { line-height: 1.7; color: var(--color-texto-secundario); }
+.profile-card h3 { font-size: 1.25rem; margin-top: 0; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid var(--color-borde); }
+
+/* --- NUEVO: Estilos para Valoraciones y Reseñas --- */
+.section-title-header { display: flex; justify-content: space-between; align-items: center; }
+.overall-rating { display: flex; align-items: center; gap: 8px; }
+.rating-value { font-size: 1.5rem; font-weight: 700; color: var(--color-texto-principal); }
+.rating-stars { font-size: 1.1rem; color: #f39c12; }
+.rating-stars-small { font-size: 0.9rem; color: #f39c12; }
+.rating-count { font-size: 0.85rem; color: var(--color-texto-secundario); }
+.reviews-list { margin-top: 20px; }
+.review-item { padding: 20px 0; border-bottom: 1px solid var(--color-borde); }
+.review-item:last-child { border-bottom: none; padding-bottom: 0; }
+.review-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.review-title { font-weight: 500; font-size: 1.1rem; color: var(--color-texto-principal); }
+.review-body { font-style: italic; margin-bottom: 10px; }
+.review-author { font-size: 0.85rem; color: var(--color-texto-secundario); text-align: right; }
+.see-all-link { display: block; text-align: center; margin-top: 20px; font-weight: 500; color: var(--color-primario); text-decoration: none; }
+
+/* Estilos para Ofertas y Detalles de la Empresa */
+.company-jobs-list { list-style: none; padding: 0; margin: 0; }
+.company-jobs-list li { padding: 15px 0; border-bottom: 1px solid var(--color-borde); display: flex; justify-content: space-between; align-items: center; }
+.company-jobs-list li:last-child { border-bottom: none; }
+.company-jobs-list a { text-decoration: none; font-weight: 500; color: var(--color-primario); }
+.company-jobs-list span { font-size: 0.9rem; color: var(--color-texto-secundario); }
+.company-details-list { list-style: none; padding: 0; margin: 0; }
+.company-details-list li { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 20px; }
+.company-details-list li:last-child { margin-bottom: 0; }
+.company-details-list i { font-size: 1.1rem; color: var(--color-texto-secundario); width: 20px; margin-top: 4px; }
+.company-details-list span { display: block; color: var(--color-texto-secundario); font-size: 0.9rem; }
+.company-details-list strong, .company-details-list a { color: var(--color-texto-principal); font-weight: 500; text-decoration: none; }
+.company-details-list a:hover { text-decoration: underline; }
+
+/* --- NUEVO: Estilos para Estadísticas de Contratación --- */
+.hiring-stats { display: flex; flex-direction: column; gap: 20px; }
+.stat-item { text-align: center; }
+.stat-value { font-size: 2rem; font-weight: 700; color: var(--color-texto-principal); display: block; }
+.stat-label { font-size: 0.9rem; color: var(--color-texto-secundario); }
+
+/*  ==========================================================================
+    Estilos para la Página "Editar Perfil" (Pestañas Corregidas)
+    ========================================================================== */
+
+.edit-profile-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Navegación por Pestañas */
+.tabs-nav {
+    display: flex;
+    border-bottom: 2px solid var(--color-borde);
+    margin-bottom: 30px;
+}
+
+.tab-link {
+    background: none;
+    border: none;
+    padding: 15px 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-texto-secundario);
+    position: relative;
+    top: 2px;
+    border-bottom: 2px solid transparent;
+    transition: var(--transicion-rapida);
+}
+
+.tab-link:hover {
+    color: var(--color-texto-principal);
+}
+
+.tab-link.active {
+    color: var(--color-primario);
+    border-bottom-color: var(--color-primario);
+}
+
+/* Contenido de las Pestañas */
+.tabs-content .tab-pane {
+    display: none; /* Ocultar todas las pestañas por defecto */
+}
+
+.tabs-content .tab-pane.active {
+    display: block; /* Mostrar solo la pestaña activa */
+}
+
+.edit-form .form-section-card {
+    margin-bottom: 30px;
+}
+
+.form-control-file {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-borde);
+}
+
+/* ==========================================================================
+    Estilos para las Ventanas Modales
+   ========================================================================== */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Fondo oscuro semitransparente */
+    z-index: 1040;
+    display: none; /* Oculto por defecto */
+}
+.modal-overlay.active {
+    display: block;
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--color-superficie);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-borde);
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    z-index: 1050;
+    width: 100%;
+    max-width: 600px; /* Ancho del modal */
+    display: none; /* Oculto por defecto */
+}
+.modal.active {
+    display: block;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    border-bottom: 1px solid var(--color-borde);
+}
+.modal-title {
+    margin: 0;
+    font-size: 1.5rem;
+}
+.modal-close-btn {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--color-texto-secundario);
+}
+
+.modal-body {
+    padding: 25px;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 20px 25px;
+    border-top: 1px solid var(--color-borde);
+    background-color: #f8f9fa;
+}
+
+/* ==========================================================================
+    Estilos para las Listas Editables (Experiencia, Educación, etc.)
+   ========================================================================== */
+
+.items-list-header {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--color-borde);
+}
+
+.items-list-header h3 {
+    margin: 0 0 20px 0;
+    font-size: 1.5rem;
+}
+
+.items-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.editable-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-borde);
+    transition: var(--transicion-rapida);
+}
+
+.editable-item:hover {
+    border-color: #adb5bd;
+}
+
+.item-info .item-title {
+    margin: 0 0 5px 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-texto-principal);
+}
+
+.item-info .item-subtitle {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--color-texto-secundario);
+}
+
+.item-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-icon {
+    background: none;
+    border: 1px solid transparent;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    font-size: 1rem;
+    color: var(--color-texto-secundario);
+    transition: var(--transicion-rapida);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-icon:hover {
+    background-color: #e9ecef;
+    color: var(--color-texto-principal);
+}
+
+/* ==========================================================================
+    Estilos para Componentes Dinámicos (Habilidades e Idiomas)
+   ========================================================================== */
+
+.form-divider {
+    border: none;
+    border-top: 1px solid var(--color-borde);
+    margin: 30px 0;
+}
+
+.dynamic-add-container {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-add-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #e9ecef;
+    color: #495057;
+    border: 1px solid #ced4da;
+    border-radius: var(--radio-borde);
+    padding: 0 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transicion-rapida);
+}
+.btn-add-item:hover {
+    background-color: #d8dde2;
+}
+
+/* ESTA ES LA REGLA CORREGIDA PARA LAS ETIQUETAS */
+.dynamic-items-list {
+    display: flex;
+    flex-wrap: wrap; /* Permite que las etiquetas se pongan una al lado de la otra */
+    gap: 10px;
+    margin-top: 15px;
+    margin-bottom: 20px; /* Añade el espacio que faltaba abajo */
+}
+
+/* ESTA ES LA REGLA CORREGIDA PARA CADA ETIQUETA */
+.dynamic-item {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-fondo-cuadros);
+    color: black; /* Color del texto de las etiquetas */
+    padding: 8px 15px;
+    border-radius: 15px; /* Bordes redondeados para las etiquetas */
+    font-size: 1rem;
+    border: none; /* Quitamos el borde anterior */
+}
+
+.dynamic-item span {
+    font-weight: 500;
+    margin-right: 8px;
+}
+
+.item-options {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.item-input, .item-select {
+    width: 50px;
+    padding: 5px 5px;
+    border: 1px solid #ced4da;
+    border-radius: 10px;
+    font-size: 0.85rem;
+}
+
+.btn-remove-item {
+    background: none;
+    border: none;
+    color: #6c757d;
+    cursor: pointer;
+    font-size: 1.4rem;
+    line-height: 1;
+}
+.btn-remove-item:hover {
+    color: var(--color-peligro);
+}
+
+/* ==========================================================================
+    Estilos para la Página de Búsqueda de Empleos (Completo)
+   ========================================================================== */
+
+.search-page-container {
+    display: grid;
+    grid-template-columns: 300px 1fr; /* Columna de filtros fija y contenido flexible */
+    gap: 30px;
+    max-width: 1400px;
+    margin: 120px auto 50px auto;
+    padding: 0 30px;
+    align-items: flex-start;
+}
+
+/* --- Columna de Filtros (Izquierda) --- */
+.search-sidebar .filter-card {
+    position: sticky; /* Hace que los filtros se queden fijos al hacer scroll */
+    top: 120px; /* Espacio desde la parte superior para el header fijo */
+    background-color: var(--color-superficie);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-borde);
+    padding: 25px;
+    box-shadow: 0 4px 15px var(--color-sombra);
+}
+
+.search-sidebar .filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--color-borde);
+}
+
+.search-sidebar .filter-title {
+    font-size: 1.5rem;
+    margin: 0;
+    color: var(--color-texto-principal);
+}
+
+/* --- ESTILOS MEJORADOS PARA EL BOTÓN "LIMPIAR FILTROS" --- */
+.btn-clear-filters {
+    background-color: #000000;
+    color: #ffffff;
+    border: 1px solid #000000;
+    border-radius: var(--radio-borde);
+    padding: 8px 15px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transicion-rapida);
+    text-decoration: none;
+}
+
+.btn-clear-filters:hover {
+    background-color: #ffffff;
+    color: #000000;
+    border-color: #000000;
+}
+
+.accordion-filters {
+    border-top: 1px solid var(--color-borde);
+    margin-top: 20px;
+}
+
+.accordion-item {
+    border-bottom: 1px solid var(--color-borde);
+}
+
+.accordion-header {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 18px 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-texto-principal);
+    font-family: var(--fuente-titulos);
+    text-align: left;
+}
+
+.accordion-header i {
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+    padding: 0 10px;
+}
+
+.accordion-item.active .accordion-header i {
+    transform: rotate(180deg);
+}
+
+.accordion-item.active .accordion-content {
+    max-height: 400px;
+    padding: 10px 10px 20px 10px; /* AÑADIMOS PADDING SUPERIOR */
+}
+
+/* --- NUEVA REGLA PARA DAR ESPACIO AL INPUT --- */
+.accordion-content .form-control {
+    margin-bottom: 5px; /* Pequeño margen inferior para que no se pegue al borde */
+}
+
+/* Estilos para los filtros tipo tag */
+.accordion-content .radio-group, .accordion-content .checkbox-group {
+    margin-bottom: 8px;
+}
+
+.radio-group input[type="radio"], .checkbox-group input[type="checkbox"] {
+    display: none; /* Ocultamos el input por defecto */
+}
+
+.radio-group label, .checkbox-group label {
+    display: block;
+    padding: 8px 15px;
+    border: 1px solid var(--color-borde);
+    border-radius: 20px; /* Estilo "píldora" */
+    cursor: pointer;
+    transition: var(--transicion-rapida);
+    font-size: 0.9rem;
+    text-align: center;
+    margin-bottom: 0;
+    font-weight: 400;
+}
+
+.radio-group label:hover, .checkbox-group label:hover {
+    border-color: var(--color-texto-secundario);
+    background-color: #f8f9fa;
+}
+
+/* Estilo para la opción seleccionada */
+.radio-group input[type="radio"]:checked + label,
+.checkbox-group input[type="checkbox"]:checked + label {
+    background-color: var(--color-texto-principal);
+    color: var(--color-superficie);
+    border-color: var(--color-texto-principal);
+    font-weight: 500;
+}
+
+
+/* --- Contenido Principal (Derecha) --- */
+.search-header {
+    margin-bottom: 30px;
+}
+.search-header h1 {
+    font-size: 2.5rem;
+    margin: 0 0 10px 0;
+}
+.search-header p {
+    font-size: 1.1rem;
+    color: var(--color-texto-secundario);
+    margin: 0;
+}
+
+.results-list {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.job-card {
+    background-color: var(--color-superficie);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-borde);
+    padding: 25px;
+    box-shadow: 0 4px 15px var(--color-sombra);
+    transition: var(--transicion-rapida);
+}
+.job-card:hover {
+    border-color: var(--color-primario);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px var(--color-sombra);
+}
+
+.job-card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--color-borde);
+}
+
+.company-logo-small {
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radio-borde);
+    border: 1px solid var(--color-borde);
+    flex-shrink: 0;
+}
+
+.job-card-title {
+    margin: 0 0 5px 0;
+    font-size: 1.5rem;
+}
+.job-card-title a {
+    text-decoration: none;
+    color: var(--color-texto-principal);
+    transition: var(--transicion-rapida);
+}
+.job-card-title a:hover {
+    color: var(--color-primario);
+}
+
+.job-card-company {
+    margin: 0 0 5px 0;
+    font-weight: 500;
+}
+
+.job-card-location {
+    margin: 0;
+    color: var(--color-texto-secundario);
+    font-size: 0.9rem;
+}
+
+.job-card-body p {
+    margin: 0;
+    line-height: 1.6;
+    color: var(--color-texto-secundario);
+}
+
+.job-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--color-borde);
+}
+
+.job-card-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.job-card-skills span {
+    background-color: #e9ecef;
+    color: #495057;
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+}
+
+.job-card-date {
+    font-size: 0.85rem;
+    color: var(--color-texto-secundario);
+    flex-shrink: 0;
+    margin-left: 15px;
+}
+
+/* ==========================================================================
+    Estilos para Componentes Dinámicos (Habilidades en Filtros)
+   ========================================================================== */
+
+.dynamic-add-container {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-add-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #e9ecef;
+    color: #495057;
+    border: 1px solid #ced4da;
+    border-radius: var(--radio-borde);
+    padding: 0 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transicion-rapida);
+}
+.btn-add-item:hover {
+    background-color: #d8dde2;
+}
+
+.dynamic-items-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.dynamic-item {
+    display: inline-flex;
+    align-items: center;
+    background-color: #e9ecef;
+    color: #495057;
+    padding: 8px 10px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    border: 1px solid #dee2e6;
+}
+
+.dynamic-item span {
+    font-weight: 500;
+    margin-right: 8px;
+}
+
+.item-options {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.item-select {
+    width: 90px; /* Ancho ajustado para el texto */
+    padding: 3px 6px;
+    border: 1px solid #ced4da;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    background-color: #fff;
+}
+
+.btn-remove-item {
+    background: none;
+    border: none;
+    color: #6c757d;
+    cursor: pointer;
+    font-size: 1.4rem;
+    line-height: 1;
+}
+.btn-remove-item:hover {
+    color: var(--color-peligro);
+}
+
+
+
+
+
+
+/* ==========================================================================
+    Corrección para Eliminar Scroll y Ajustar Espaciado en Páginas de Autenticación
+   ========================================================================== */
+
+/* 1. Hacemos que el body de la página oscura sea un contenedor flexible */
+.auth-page-dark {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--color-fondo);
+}
+
+/* 2. Le decimos al contenido principal que "crezca" y centre su contenido */
+.auth-page-dark main {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 3. (CORREGIDO) Ajustamos el contenedor del formulario y le damos margen */
+.auth-container {
+    width: 100%;
+    /* Añadimos margen arriba y abajo para separarlo del header y footer */
+    margin-top: 1%;
+    margin-bottom: 1%; 
+}
+
+/* 4. Hacemos el footer más compacto y oscuro */
+.auth-page-dark footer#pie {
+    padding: 25px 0;
+    text-align: center;
+    background-color: var(--color-fondo);
+    color: var(--color-texto-secundario);
+    border-top: none;
+    box-shadow: 0px 1px 0px 0px rgba(255, 255, 255, 0.1); 
+}
+
+/* ==========================================================================
+    Estilos para la Página de Notificaciones
+   ========================================================================== */
+
+.notifications-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: var(--color-superficie);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-borde);
+    box-shadow: 0 4px 15px var(--color-sombra);
+    overflow: hidden; /* Para que el borde redondeado se aplique bien */
+}
+
+.notification-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px 25px;
+    border-bottom: 1px solid var(--color-borde);
+    transition: background-color 0.2s ease;
+}
+
+.notification-item:last-child {
+    border-bottom: none;
+}
+
+.notification-item:hover {
+    background-color: #f8f9fa;
+}
+
+/* Estilo para notificaciones no leídas */
+.notification-item.unread {
+    background-color: #f0f5ff; /* Un azul muy claro para destacar */
+}
+.notification-item.unread:hover {
+    background-color: #e6efff;
+}
+
+.notification-icon {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #e9ecef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--color-texto-secundario);
+}
+.notification-item.unread .notification-icon {
+    background-color: var(--color-terciario);
+    color: #fff;
+}
+
+.notification-content p {
+    margin: 0 0 8px 0;
+    line-height: 1.6;
+    color: var(--color-texto-principal);
+}
+
+.notification-content p strong {
+    font-weight: 700;
+}
+
+.notification-time {
+    font-size: 0.85rem;
+    color: var(--color-texto-secundario);
+}
+
+/* ==========================================================================
+    Estilos para la Página de Propuestas
+   ========================================================================== */
+
+.proposals-list {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.proposal-card {
+    background-color: var(--color-superficie);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-borde);
+    box-shadow: 0 4px 15px var(--color-sombra);
+    transition: var(--transicion-rapida);
+}
+.proposal-card:hover {
+    border-color: var(--color-primario);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px var(--color-sombra);
+}
+
+.proposal-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 25px;
+    border-bottom: 1px solid var(--color-borde);
+}
+
+.proposal-body {
+    padding: 25px;
+}
+
+.recruiter-message {
+    margin-bottom: 25px;
+}
+.recruiter-message p {
+    margin: 0 0 10px 0;
+    font-weight: 500;
+    color: var(--color-texto-secundario);
+}
+.recruiter-message blockquote {
+    margin: 0;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-left: 4px solid var(--color-primario);
+    font-style: italic;
+    color: var(--color-texto-principal);
+}
+
+.proposal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    padding: 20px 25px;
+    background-color: #f8f9fa;
+    border-top: 1px solid var(--color-borde);
+}
+
+/* ==========================================================================
+    Estilos para la Barra de Búsqueda en la Navegación (Diseño Unificado)
+   ========================================================================== */
+
+.nav-search-bar {
+    position: relative; /* Clave para posicionar el botón adentro */
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 20px;
+}
+
+.nav-search-bar input {
+    width: 100%;
+    padding: 10px 40px 10px 20px; /* Aumentamos el padding derecho para el botón */
+    border: 1px solid var(--color-borde);
+    border-radius: 50px; /* Bordes completamente redondeados (estilo píldora) */
+    font-size: 0.9rem;
+    color: var(--color-texto-principal);
+    background-color: var(--color-superficie);
+    outline: none;
+    transition: var(--transicion-rapida);
+}
+
+.nav-search-bar input:focus {
+    border-color: var(--color-primario);
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15);
+}
+
+.nav-search-bar button {
+    position: absolute; /* Posicionamos el botón sobre el input */
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none; /* Quitamos el fondo */
+    border: none; /* Quitamos el borde */
+    padding: 10px 10px;
+    color: var(--color-texto-secundario);
+    cursor: pointer;
+    border-radius: 50%;
+    transition: var(--transicion-rapida);
+}
+
+.nav-search-bar button:hover {
+    background-color: #f0f0f0;
+    color: var(--color-terciario);
+}
+
+/* --- Adaptación para el tema oscuro --- */
+.auth-page-dark .nav-search-bar input {
+    border-color: var(--color-borde);
+    color: var(--color-texto-principal);
+}
+.auth-page-dark .nav-search-bar button {
+    color: var(--color-texto-secundario);
+}
+.auth-page-dark .nav-search-bar button:hover {
+    background-color: #3a3a3a;
+}
+
+/* ==========================================================================
+    Estilos para la Página "Editar Perfil de Empresa"
+   ========================================================================== */
+
+/* La mayoría de los estilos son reutilizados de otras páginas de formularios.
+   Añadimos solo los ajustes necesarios. */
+
+.edit-form .form-group label {
+    font-weight: 500; /* Aseguramos que las etiquetas tengan un buen peso */
+}
+
+/*  ==========================================================================
+    Estilos para el Modal de Visualización de Perfil
+    ========================================================================== */
+
+/* Hacemos el modal más grande y adaptable */
+.modal.modal-profile {
+    max-width: 90vw; /* Ocupa el 90% del ancho de la pantalla */
+    width: 1200px;   /* Pero con un máximo de 1200px */
+    height: 90vh;    /* Ocupa el 90% de la altura de la pantalla */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Hacemos que el cuerpo del modal sea el que tenga scroll */
+.modal-body-profile {
+    flex-grow: 1; /* Ocupa todo el espacio vertical disponible */
+    overflow-y: auto; /* Añade scroll si el contenido es muy largo */
+    padding: 20px;
+}
+
+/* Reutilizamos y adaptamos los estilos de la página de perfil */
+.profile-page-container-modal {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+/* ==========================================================================
+   Estilos para la Página de Gestión de Aplicantes (Pipeline)
+   ========================================================================== */
+
+.pipeline-board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columnas de igual tamaño */
+    gap: 20px;
+    align-items: flex-start; /* Alinea las columnas en la parte superior */
+}
+
+.pipeline-column {
+    background-color: #f1f3f5; /* Un gris muy claro para el fondo de la columna */
+    border-radius: var(--radio-borde);
+    padding: 15px;
+}
+
+.column-header {
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.column-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--color-texto-principal);
+}
+
+.column-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    min-height: 200px; /* Altura mínima para que las columnas vacías no se colapsen */
+}
+
+.applicant-card {
+    background-color: var(--color-superficie);
+    border-radius: var(--radio-borde);
+    padding: 15px;
+    box-shadow: 0 2px 5px var(--color-sombra);
+    border: 1px solid var(--color-borde);
+    cursor: grab; /* Cambia el cursor para indicar que se puede arrastrar */
+}
+
+.card-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.applicant-picture {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.applicant-name {
+    margin: 0 0 4px 0;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.applicant-title {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--color-texto-secundario);
+}
+
+.card-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    padding-top: 10px;
+    border-top: 1px solid var(--color-borde);
+}
+
+/* ==========================================================================
+    Estilos para los Mensajes Flash (Notificaciones)
+   ========================================================================== */
+
+.flash-messages-container {
+    padding: 20px;
+    position: fixed;
+    top: 80px; /* Debajo del header */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2000; /* Para que aparezca por encima de todo */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.flash-message {
+    padding: 15px 25px;
+    border-radius: var(--radio-borde);
+    font-weight: 500;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    border: 1px solid transparent;
+}
+
+/* Estilo para mensajes de éxito (como el de registro) */
+.flash-message.success {
+    background-color: #d1e7dd;
+    color: #0f5132;
+    border-color: #badbcc;
+}
+
+/* Estilo para mensajes de error (como contraseña incorrecta) */
+.flash-message.error {
+    background-color: #f8d7da;
+    color: #842029;
+    border-color: #f5c2c7;
+}
+
+/* ==========================================================================
+   Estilos para el Panel Lateral (Drawer)
+   ========================================================================== */
+
+.drawer-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1040;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.drawer-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.drawer {
+    position: fixed;
+    top: 0;
+    right: -800px; /* Empieza fuera de la pantalla */
+    width: 100%;
+    max-width: 800px; /* Ancho del panel */
+    height: 100%;
+    background-color: var(--color-superficie);
+    box-shadow: -5px 0 25px rgba(0, 0, 0, 0.2);
+    z-index: 1050;
+    transition: right 0.4s ease-in-out;
+    display: flex;
+    flex-direction: column;
+}
+.drawer.active {
+    right: 0; /* Se desliza hacia adentro */
+}
+
+.drawer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    border-bottom: 1px solid var(--color-borde);
+    flex-shrink: 0;
+}
+.drawer-title {
+    margin: 0;
+    font-size: 1.5rem;
+}
+.drawer-close-btn {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--color-texto-secundario);
+}
+
+.drawer-body {
+    padding: 25px;
+    flex-grow: 1;
+    overflow-y: auto; /* Añade scroll si el contenido es muy largo */
+}
+
+.drawer-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 20px 25px;
+    border-top: 1px solid var(--color-borde);
+    background-color: #f8f9fa;
+    flex-shrink: 0;
+}
+
+
+
+
+
+
+
+/* Responsividad para el carrusel */
+@media screen and (max-width: 992px) {
+    .cv-card {
+        flex-basis: calc(33.33% - 20px); /* 3 tarjetas por vista */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .cv-card {
+        flex-basis: calc(50% - 20px); /* 2 tarjetas por vista */
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .cv-card {
+        flex-basis: calc(100% - 20px); /* 1 tarjeta por vista */
+    }
+}
+
+/* Media Query para responsividad de la sección "Quiénes Somos" */
+@media screen and (max-width: 768px) {
+    .about-us-content {
+        grid-template-columns: 1fr; /* En pantallas pequeñas, una columna sobre la otra */
+    }
+}
+
+/* Media Query para dispositivos móviles */
+@media screen and (max-width: 768px) {
+    .nav-bar {
+        justify-content: space-between;
+    }
+
+    .nav-buscador {
+        order: 3; /* Lo coloca al final en diseño móvil si es necesario */
+        margin-top: 15px;
+        width: 100%;
+    }
+
+    .nav-buscador input {
+        width: calc(100% - 40px);
+    }
+
+    .menu-toggle {
+        display: block;
+        order: 1;
+    }
+
+    .nav-menu {
+        position: absolute;
+        background-color: #fff;
+        left: 0;
+        top: 80px; /* Ajusta según la altura de tu cabecera */
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        display: none;
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .nav-menu-item {
+        margin: 0;
+        width: 100%;
+        border-bottom: 1px solid #eee;
+    }
+
+    .nav-menu-item a {
+        padding: 15px 20px;
+        display: block;
+    }
+
+    .nav-menu-dropdown .dropdown-menu {
+        position: static;
+        border: none;
+        box-shadow: none;
+        width: 100%;
+    }
+
+    .nav-menu-dropdown:hover .dropdown-menu {
+        display: none; /* Se mostrará al hacer clic en el menú desplegable en móvil */
+    }
+
+    .nav-menu-dropdown.active .dropdown-menu {
+        display: block;
+    }
+
+    .dropdown-menu li a {
+        padding-left: 40px;
+    }
+}
+
+

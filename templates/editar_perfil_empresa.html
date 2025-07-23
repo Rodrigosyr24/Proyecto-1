@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="page-container form-container">
+    <header class="page-header">
+        <h1>Editar Perfil de Empresa</h1>
+        <p>Mantén la información de tu empresa actualizada para atraer al mejor talento.</p>
+    </header>
+
+    <form action="{{ url_for('editar_perfil_empresa') }}" method="POST" enctype="multipart/form-data" class="edit-form">
+        <!-- Sección 1: Información General -->
+        <div class="form-section-card">
+            <h2 class="form-section-title">Información General</h2>
+            <div class="form-group">
+                <label for="company-name">Nombre de la Empresa</label>
+                <input type="text" id="company-name" name="nombre_empresa" class="form-control" value="{{ current_user.empresa.nombre_empresa or '' }}">
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="company-sector">Sector</label>
+                    <input type="text" id="company-sector" name="sector" class="form-control" placeholder="Ej: Tecnología, Salud..." value="{{ current_user.empresa.sector or '' }}">
+                </div>
+                <div class="form-group">
+                    <label for="company-size">Tamaño de la Empresa</label>
+                    <input type="text" id="company-size" name="tamaño" class="form-control" placeholder="Ej: 50-100 empleados" value="{{ current_user.empresa.tamaño or '' }}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="company-website">Sitio Web</label>
+                <input type="url" id="company-website" name="sitio_web" class="form-control" placeholder="https://..." value="{{ current_user.empresa.sitio_web or '' }}">
+            </div>
+        </div>
+
+        <!-- Sección 2: Marca de la Empresa -->
+        <div class="form-section-card">
+            <h2 class="form-section-title">Marca de la Empresa</h2>
+            <div class="form-group">
+                <label for="company-logo-upload">Logo de la Empresa</label>
+                <input type="file" id="company-logo-upload" name="logo" class="form-control-file">
+            </div>
+            <div class="form-group">
+                <label for="company-cover-upload">Foto de Portada</label>
+                <input type="file" id="company-cover-upload" name="portada" class="form-control-file">
+            </div>
+        </div>
+
+        <!-- Sección 3: Descripción -->
+        <div class="form-section-card">
+            <h2 class="form-section-title">Acerca de Nosotros</h2>
+            <div class="form-group">
+                <label for="company-description">Descripción de la Empresa</label>
+                <textarea id="company-description" name="descripcion" class="form-control" rows="6" placeholder="Describe la misión, visión y cultura de tu empresa...">{{ current_user.empresa.descripcion or '' }}</textarea>
+            </div>
+        </div>
+
+        <!-- Botones de Acción -->
+        <div class="form-actions">
+            <a href="{{ url_for('perfil_empresa') }}" class="btn btn-light-outline">Cancelar</a>
+            <button type="submit" class="btn btn-dark-action">Guardar Cambios</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,112 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="profile-page-container">
+    <!-- ======================= Columna Lateral (Sidebar) ======================= -->
+    <aside class="profile-sidebar">
+        <div class="profile-header-card">
+            <!-- Muestra la foto del perfil o una por defecto -->
+            <img src="{{ perfil.foto_perfil_url or '/static/img/perfil_placeholder.png' }}" alt="Foto de perfil" class="profile-picture">
+            <!-- Muestra el nombre o un mensaje para que lo complete -->
+            <h1 class="profile-name">{{ perfil.nombre_completo or 'Completa tu nombre' }}</h1>
+            <p class="profile-jobtitle">{{ perfil.titular or 'Añade tu titular profesional' }}</p>
+            <div class="profile-actions">
+                <a href="{{ url_for('editar_perfil') }}" class="btn btn-dark-action">Editar Perfil</a>
+                <a href="#" class="btn btn-light-outline">Descargar PDF</a>
+            </div>
+        </div>
+        <div class="profile-info-card">
+            <h3 class="info-card-title">Contacto y Enlaces</h3>
+            <ul class="contact-list">
+                <li><i class="fas fa-envelope"></i> <span>{{ current_user.email }}</span></li>
+                <!-- Muestra el teléfono solo si existe -->
+                {% if perfil.telefono %}
+                <li><i class="fas fa-phone"></i> <span>{{ perfil.telefono }}</span></li>
+                {% endif %}
+                <!-- Bucle para mostrar todos los enlaces guardados -->
+                {% for enlace in perfil.enlaces %}
+                <li><i class="fas fa-globe"></i> <a href="{{ enlace.url }}" target="_blank">{{ enlace.nombre }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="profile-info-card">
+            <h3 class="info-card-title">Habilidades</h3>
+            <!-- Bucle para mostrar habilidades -->
+            {% for habilidad_perfil in perfil.habilidades %}
+                <div class="skills-list">
+                    <span>{{ habilidad_perfil.habilidad.nombre }}</span>
+                </div>
+            {% else %}
+                <p>Aún no has añadido habilidades.</p>
+            {% endfor %}
+        </div>
+    </aside>
+
+    <!-- ======================= Contenido Principal ======================= -->
+    <main class="profile-main-content">
+        <div class="profile-section-card">
+            <div class="section-title-header">
+                <h2>Resumen Profesional</h2>
+            </div>
+            <p>{{ perfil.resumen or 'Añade un resumen profesional para destacar tu perfil.' }}</p>
+        </div>
+
+        <div class="profile-section-card">
+            <div class="section-title-header">
+                <h2>Experiencia Laboral</h2>
+            </div>
+            <!-- Bucle para mostrar cada experiencia -->
+            {% for exp in perfil.experiencias %}
+            <div class="experience-item">
+                <div class="item-header">
+                    <h4 class="item-title">{{ exp.cargo }}</h4>
+                    <span class="item-date">{{ exp.fecha_inicio.strftime('%b %Y') if exp.fecha_inicio }} - {{ exp.fecha_fin.strftime('%b %Y') if exp.fecha_fin else 'Presente' }}</span>
+                </div>
+                <h5 class="item-subtitle">{{ exp.empresa }}</h5>
+                <p>{{ exp.descripcion }}</p>
+            </div>
+            {% else %}
+            <p>Aún no has añadido ninguna experiencia laboral.</p>
+            {% endfor %}
+        </div>
+        
+        <div class="profile-section-card">
+            <div class="section-title-header">
+                <h2>Educación</h2>
+            </div>
+            <!-- Bucle para mostrar cada formación académica -->
+            {% for edu in perfil.educacion %}
+            <div class="experience-item">
+                <div class="item-header">
+                    <h4 class="item-title">{{ edu.titulo }}</h4>
+                    <span class="item-date">{{ edu.fecha_inicio.strftime('%Y') if edu.fecha_inicio }} - {{ edu.fecha_fin.strftime('%Y') if edu.fecha_fin else 'Presente' }}</span>
+                </div>
+                <h5 class="item-subtitle">{{ edu.institucion }}</h5>
+            </div>
+            {% else %}
+            <p>Aún no has añadido ninguna formación académica.</p>
+            {% endfor %}
+        </div>
+
+        <div class="profile-section-card">
+            <div class="section-title-header">
+                <h2>Proyectos Destacados</h2>
+            </div>
+            <!-- Bucle para mostrar cada proyecto -->
+            {% for proy in perfil.proyectos %}
+            <div class="experience-item">
+                <div class="item-header">
+                    <h4 class="item-title">{{ proy.nombre_proyecto }}</h4>
+                    {% if proy.enlace_proyecto %}
+                    <a href="{{ proy.enlace_proyecto }}" class="project-link" target="_blank">Ver Proyecto <i class="fas fa-external-link-alt"></i></a>
+                    {% endif %}
+                </div>
+                <p>{{ proy.descripcion }}</p>
+            </div>
+            {% else %}
+            <p>Aún no has añadido ningún proyecto.</p>
+            {% endfor %}
+        </div>
+    </main>
+</div>
+{% endblock %}

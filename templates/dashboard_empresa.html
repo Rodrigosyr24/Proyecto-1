@@ -1,0 +1,140 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="dashboard-container">
+    <!-- ======================= Columna de Filtros (Izquierda) - VERSIÓN DE PRECISIÓN ======================= -->
+    <aside class="dashboard-sidebar">
+        <form action="{{ url_for('dashboard_empresa') }}" method="GET">
+            <div class="filter-card">
+                <div class="filter-header">
+                    <h3 class="filter-title">Filtros de Búsqueda</h3>
+                    <button type="reset" class="btn-clear-filters">Limpiar Filtros</button>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="keywords">Palabras Clave</label>
+                    <input type="text" id="keywords" name="keywords" class="form-control" placeholder="Nombre, titular, empresa...">
+                </div>
+                
+                <div class="accordion-filters">
+                    <!-- Filtro por Ubicación -->
+                    <div class="accordion-item">
+                        <button type="button" class="accordion-header"><span>Ubicación</span><i class="fas fa-chevron-down"></i></button>
+                        <div class="accordion-content">
+                            <input type="text" name="location" class="form-control" placeholder="Ciudad o país...">
+                        </div>
+                    </div>
+                    <!-- Filtro por Experiencia TOTAL -->
+                    <div class="accordion-item">
+                        <button type="button" class="accordion-header"><span>Experiencia Total</span><i class="fas fa-chevron-down"></i></button>
+                        <div class="accordion-content">
+                            <div class="radio-group"><input type="radio" name="exp" id="exp-all" value="" checked><label for="exp-all">Cualquiera</label></div>
+                            <div class="radio-group"><input type="radio" name="exp" id="exp-0-2" value="0-2"><label for="exp-0-2">0 - 2 años</label></div>
+                            <div class="radio-group"><input type="radio" name="exp" id="exp-3-5" value="3-5"><label for="exp-3-5">3 - 5 años</label></div>
+                            <div class="radio-group"><input type="radio" name="exp" id="exp-6-10" value="6-10"><label for="exp-6-10">6 - 10 años</label></div>
+                            <div class="radio-group"><input type="radio" name="exp" id="exp-10-plus" value="10-plus"><label for="exp-10-plus">Más de 10 años</label></div>
+                        </div>
+                    </div>
+                    <!-- Filtro por Habilidades Específicas con data-type -->
+                    <div class="accordion-item" data-type="skill">
+                        <button type="button" class="accordion-header"><span>Habilidades Específicas</span><i class="fas fa-chevron-down"></i></button>
+                        <div class="accordion-content">
+                            <div class="dynamic-add-container">
+                                <input type="text" class="form-control dynamic-input" placeholder="Escribe una habilidad...">
+                                <button type="button" class="btn-add-item"><i class="fas fa-plus"></i> Añadir</button>
+                            </div>
+                            <div class="dynamic-items-list">
+                                <!-- Las habilidades filtradas aparecerán aquí -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Filtro por Idiomas con data-type -->
+                    <div class="accordion-item" data-type="language">
+                        <button type="button" class="accordion-header"><span>Idiomas</span><i class="fas fa-chevron-down"></i></button>
+                        <div class="accordion-content">
+                            <div class="dynamic-add-container">
+                                <input type="text" class="form-control dynamic-input" placeholder="Escribe un idioma...">
+                                <button type="button" class="btn-add-item"><i class="fas fa-plus"></i> Añadir</button>
+                            </div>
+                            <div class="dynamic-items-list">
+                                <!-- Los idiomas filtrados aparecerán aquí -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-dark-action btn-block" style="margin-top: 20px;">Aplicar Filtros</button>
+            </div>
+        </form>
+    </aside>
+
+    <!-- Contenido Principal (Centro) -->
+    <main class="dashboard-main-content">
+        <div class="results-header">
+            <h2>Resultados ({{ perfiles|length }})</h2>
+            <div class="sort-options">
+                <label for="sort-by">Ordenar por:</label>
+                <select id="sort-by" class="form-control">
+                    <option value="relevance">Relevancia</option>
+                    <option value="recent">Más Recientes</option>
+                </select>
+            </div>
+        </div>
+        <div class="scrollable-candidates-wrapper">
+            <div class="candidates-row">
+                {% for perfil in perfiles %}
+                <div class="candidate-card">
+                    <img src="{{ perfil.foto_perfil_url or '/static/img/perfil_placeholder.png' }}" alt="Foto de perfil" class="candidate-picture">
+                    <h3 class="candidate-name">{{ perfil.nombre_completo or 'N/A' }}</h3>
+                    <p class="candidate-title">{{ perfil.titular or 'N/A' }}</p>
+                    <div class="candidate-skills">
+                        <!-- Bucle para habilidades -->
+                    </div>
+                    <!-- Este botón ahora abrirá el panel lateral -->
+                    <button type="button" class="btn btn-light-outline btn-block" data-drawer-target="#view-profile-drawer" data-profile-id="{{ perfil.id }}">Ver Perfil</button>
+                </div>
+                {% else %}
+                <p>No se encontraron perfiles.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+
+    <!-- Panel de Acciones (Derecha) -->
+    <aside class="dashboard-actions">
+        <div class="actions-card">
+            <a href="{{ url_for('publicar_oferta') }}" class="btn btn-dark-action btn-block btn-large"><i class="fas fa-plus"></i> Publicar Nueva Oferta</a>
+        </div>
+        <div class="actions-card offer-card">
+            <h3 class="actions-title">Tus Ofertas Activas</h3>
+            <ul class="dashboard-offers-list">
+                {% for oferta in ofertas %}
+                <li>
+                    <a href="{{ url_for('gestion_aplicantes', oferta_id=oferta.id) }}">{{ oferta.titulo }}</a>
+                    <span class="applicant-count">{{ oferta.postulaciones|length }} aplicantes</span>
+                </li>
+                {% else %}
+                <li><p>No has publicado ofertas.</p></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </aside>
+</div>
+
+<!-- ====================================================== -->
+<!--  NUEVA ESTRUCTURA PARA EL PANEL LATERAL (DRAWER)      -->
+<!-- ====================================================== -->
+<div class="drawer-overlay" id="drawer-overlay"></div>
+<div class="drawer" id="view-profile-drawer">
+    <div class="drawer-header">
+        <h2 class="drawer-title">Perfil del Candidato</h2>
+        <button class="drawer-close-btn" data-close-drawer>&times;</button>
+    </div>
+    <div class="drawer-body">
+        <!-- El contenido del perfil se cargará aquí con JavaScript -->
+    </div>
+    <div class="drawer-footer">
+        <button type="button" class="btn btn-light-outline" data-close-drawer>Cerrar</button>
+        <button type="button" class="btn btn-dark-action"><i class="fas fa-paper-plane"></i> Enviar Propuesta</button>
+    </div>
+</div>
+{% endblock %}

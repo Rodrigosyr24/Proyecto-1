@@ -1,0 +1,144 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="page-container form-container">
+    <header class="page-header">
+        <h1>Publicar Nueva Oferta de Empleo</h1>
+        <p>Completa los siguientes campos para encontrar al candidato ideal.</p>
+    </header>
+
+    <form action="#" method="POST" class="publish-form">
+        <!-- Sección 1: Información Esencial -->
+        <div class="form-section-card">
+            <h2 class="form-section-title">1. Información Esencial</h2>
+            <div class="form-group">
+                <label for="job-title">Título del Cargo</label>
+                <input type="text" id="job-title" class="form-control" placeholder="Ej: Desarrollador Frontend Senior" required>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="location">Ubicación</label>
+                    <input type="text" id="location" class="form-control" placeholder="Ej: Lima, Perú" required>
+                </div>
+                <div class="form-group">
+                    <label for="contract-type">Tipo de Contrato</label>
+                    <select id="contract-type" class="form-control" required>
+                        <option value="">Seleccionar tipo...</option>
+                        <option value="full-time">Jornada Completa</option>
+                        <option value="part-time">Media Jornada</option>
+                        <option value="freelance">Freelance / Por Proyecto</option>
+                        <option value="internship">Prácticas</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="remote-work">
+                <label for="remote-work">Esta posición permite trabajo remoto.</label>
+            </div>
+        </div>
+
+        <!-- Sección 2: Descripción del Puesto -->
+        <div class="form-section-card">
+            <h2 class="form-section-title">2. Descripción del Puesto</h2>
+            <div class="form-group">
+                <label for="job-description">Descripción General</label>
+                <textarea id="job-description" class="form-control" rows="5" placeholder="Describe el propósito principal del rol..."></textarea>
+            </div>
+            <div class="form-group">
+                <label for="responsibilities">Responsabilidades Principales</label>
+                <textarea id="responsibilities" class="form-control" rows="5" placeholder="Enumera las tareas y responsabilidades clave..."></textarea>
+            </div>
+        </div>
+
+        <!-- Sección 3: Requisitos del Candidato (DISEÑO REFINADO) -->
+        <div class="form-section-card">
+            <h2 class="form-section-title">3. Requisitos del Candidato</h2>
+
+            <!-- Grupo de Experiencia General -->
+            <div class="form-group">
+                <label for="total-experience">Experiencia Profesional Total (Mínima)</label>
+                <input type="number" id="total-experience" class="form-control" placeholder="Ej: 5 años">
+                <small class="form-text">Define la antigüedad general que buscas en un candidato.</small>
+            </div>
+
+            <hr class="form-divider">
+
+            <!-- Grupo de Habilidades Específicas -->
+            <div class="form-group">
+                <label>Habilidades Específicas Requeridas</label>
+                <!-- NUEVO CONTENEDOR VISUAL -->
+                <div class="dynamic-input-wrapper">
+                    <div id="skills-list" class="dynamic-items-list">
+                        <!-- Las habilidades añadidas aparecerán aquí -->
+                        <div class="dynamic-item">
+                            <span>React</span>
+                            <div class="item-options">
+                                <input type="number" class="item-input" placeholder="Años Exp.">
+                                <button class="btn-remove-item">&times;</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dynamic-add-container">
+                        <input type="text" id="skill-input" class="form-control" placeholder="Escribe una habilidad y haz clic en Añadir...">
+                        <button type="button" class="btn-add-item"><i class="fas fa-plus"></i> Añadir</button>
+                    </div>
+                </div>
+                <small class="form-text">Añade las tecnologías o competencias clave y los años de experiencia para cada una.</small>
+            </div>
+
+            <hr class="form-divider">
+
+            <!-- Grupo de Idiomas -->
+            <div class="form-group">
+                <label>Idiomas Requeridos</label>
+                <!-- NUEVO CONTENEDOR VISUAL -->
+                <div class="dynamic-input-wrapper">
+                    <div id="languages-list" class="dynamic-items-list">
+                        <!-- Los idiomas añadidos aparecerán aquí -->
+                        <div class="dynamic-item">
+                            <span>Inglés</span>
+                            <div class="item-options">
+                                <select class="item-select">
+                                    <option>Nivel...</option>
+                                    <option>Básico (A2)</option>
+                                    <option>Intermedio (B1)</option>
+                                    <option>Avanzado (C1)</option>
+                                    <option>Nativo</option>
+                                </select>
+                                <button class="btn-remove-item">&times;</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dynamic-add-container">
+                        <input type="text" id="language-input" class="form-control" placeholder="Escribe un idioma y haz clic en Añadir...">
+                        <button type="button" class="btn-add-item"><i class="fas fa-plus"></i> Añadir</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Sección 4: Condiciones (Opcional) -->
+        <div class="form-section-card">
+            <h2 class="form-section-title">4. Condiciones (Opcional)</h2>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Rango Salarial (Mínimo)</label>
+                    <input type="number" class="form-control" placeholder="Ej: 3000">
+                </div>
+                <div class="form-group">
+                    <label>Rango Salarial (Máximo)</label>
+                    <input type="number" class="form-control" placeholder="Ej: 5000">
+                </div>
+            </div>
+        </div>
+
+        <!-- Botones de Acción -->
+        <div class="form-actions">
+            <a href="#" class="btn btn-light-outline">Vista Previa</a>
+            <button type="submit" class="btn btn-dark-action">Publicar Oferta</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

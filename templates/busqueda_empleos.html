@@ -1,0 +1,116 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="search-page-container">
+    <!-- ======================= Columna de Filtros (Izquierda) - VERSIÓN FINAL HÍBRIDA ======================= -->
+    <aside class="search-sidebar">
+        <form action="{{ url_for('busqueda_empleos') }}" method="GET">
+            <div class="filter-card">
+                <div class="filter-header">
+                    <h3 class="filter-title">Filtrar Ofertas</h3>
+                    <button type="reset" class="btn-clear-filters">Limpiar Filtros</button>
+                </div>
+                
+                <!-- Filtro General de Palabras Clave -->
+                <div class="filter-group">
+                    <label for="keywords">Palabras Clave</label>
+                    <input type="text" id="keywords" name="keywords" class="form-control" placeholder="Cargo, habilidad, empresa...">
+                </div>
+                
+                <div class="accordion-filters">
+                    <!-- Filtro por Ubicación -->
+                    <div class="accordion-item">
+                        <button type="button" class="accordion-header"><span>Ubicación</span><i class="fas fa-chevron-down"></i></button>
+                        <div class="accordion-content">
+                            <input type="text" name="location" class="form-control" placeholder="Ciudad o país...">
+                        </div>
+                    </div>
+                    <!-- Filtro por Experiencia TOTAL -->
+                    <div class="accordion-item">
+                        <button type="button" class="accordion-header"><span>Experiencia Total</span><i class="fas fa-chevron-down"></i></button>
+                        <div class="accordion-content">
+                            <div class="radio-group"><input type="radio" name="exp" id="exp-all" value="" checked><label for="exp-all">Cualquiera</label></div>
+                            <div class="radio-group"><input type="radio" name="exp" id="exp-0-2" value="0-2"><label for="exp-0-2">0 - 2 años</label></div>
+                            <div class="radio-group"><input type="radio" name="exp" id="exp-3-5" value="3-5"><label for="exp-3-5">3 - 5 años</label></div>
+                            <div class="radio-group"><input type="radio" name="exp" id="exp-6-10" value="6-10"><label for="exp-6-10">6 - 10 años</label></div>
+                            <div class="radio-group"><input type="radio" name="exp" id="exp-10-plus" value="10-plus"><label for="exp-10-plus">Más de 10 años</label></div>
+                        </div>
+                    </div>
+                    <!-- Filtro por Habilidades Específicas -->
+                    <div class="accordion-item">
+                        <button type="button" class="accordion-header"><span>Habilidades Específicas</span><i class="fas fa-chevron-down"></i></button>
+                        <div class="accordion-content">
+                            <div class="dynamic-add-container">
+                                <input type="text" id="skill-filter-input" class="form-control" placeholder="Escribe una habilidad...">
+                                <button type="button" class="btn-add-item"><i class="fas fa-plus"></i></button>
+                            </div>
+                            <div id="filtered-skills-list" class="dynamic-items-list">
+                                <!-- Las habilidades filtradas aparecerán aquí -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Filtro por Salario -->
+                    <div class="accordion-item">
+                        <button type="button" class="accordion-header"><span>Salario Mensual</span><i class="fas fa-chevron-down"></i></button>
+                        <div class="accordion-content">
+                            <div class="radio-group"><input type="radio" name="salary" id="sal-all" value="" checked><label for="sal-all">Cualquiera</label></div>
+                            <div class="radio-group"><input type="radio" name="salary" id="sal-2k" value="2000"><label for="sal-2k">> S/ 2,000</label></div>
+                            <div class="radio-group"><input type="radio" name="salary" id="sal-4k" value="4000"><label for="sal-4k">> S/ 4,000</label></div>
+                            <div class="radio-group"><input type="radio" name="salary" id="sal-6k" value="6000"><label for="sal-6k">> S/ 6,000</label></div>
+                        </div>
+                    </div>
+                    <!-- Filtro por Fecha -->
+                    <div class="accordion-item">
+                        <button type="button" class="accordion-header"><span>Fecha de Publicación</span><i class="fas fa-chevron-down"></i></button>
+                        <div class="accordion-content">
+                             <div class="radio-group"><input type="radio" name="date" id="date-all" value="" checked><label for="date-all">Cualquier fecha</label></div>
+                             <div class="radio-group"><input type="radio" name="date" id="date-24h" value="day"><label for="date-24h">Últimas 24 horas</label></div>
+                             <div class="radio-group"><input type="radio" name="date" id="date-week" value="week"><label for="date-week">Última semana</label></div>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-dark-action btn-block" style="margin-top: 20px;">Aplicar Filtros</button>
+            </div>
+        </form>
+    </aside>
+
+    <!-- ======================= Contenido Principal (Resultados) ======================= -->
+    <main class="search-main-content">
+        <header class="search-header">
+            <h1>Encuentra tu Próximo Desafío</h1>
+            <p>Mostrando {{ ofertas|length }} ofertas de empleo</p>
+        </header>
+
+        <div class="results-list">
+            <!-- BUCLE PARA MOSTRAR CADA OFERTA DE LA BASE DE DATOS -->
+            {% for oferta in ofertas %}
+            <div class="job-card">
+                <div class="job-card-header">
+                    <img src="{{ oferta.empresa.logo_url or '/static/img/logo_empresa_placeholder.png' }}" alt="Logo de la empresa" class="company-logo-small">
+                    <div class="job-card-info">
+                        <h2 class="job-card-title"><a href="{{ url_for('oferta_detalle', oferta_id=oferta.id) }}">{{ oferta.titulo }}</a></h2>
+                        <p class="job-card-company">{{ oferta.empresa.nombre_empresa }}</p>
+                        <p class="job-card-location">{{ oferta.ubicacion }}</p>
+                    </div>
+                </div>
+                <div class="job-card-body">
+                    <p>{{ oferta.descripcion[:150] }}...</p>
+                </div>
+                <div class="job-card-footer">
+                    <div class="job-card-skills">
+                        {% for habilidad in oferta.habilidades_requeridas %}
+                            <span>{{ habilidad.nombre }}</span>
+                        {% endfor %}
+                    </div>
+                    <span class="job-card-date">Publicado {{ oferta.fecha_publicacion.strftime('%d %b, %Y') }}</span>
+                </div>
+            </div>
+            {% else %}
+                <div class="empty-state-card">
+                    <p>No se encontraron ofertas que coincidan con tu búsqueda. Intenta con otros filtros.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+</div>
+{% endblock %}
