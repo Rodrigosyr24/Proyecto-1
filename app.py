@@ -221,10 +221,6 @@ def editar_perfil():
 @app.route('/experiencia/agregar', methods=['POST'])
 @login_required
 def agregar_experiencia():
-    """
-    Recibe datos JSON desde el modal de experiencia, los valida
-    y los guarda en la base de datos.
-    """
     if current_user.tipo_usuario != 'candidato':
         return jsonify({'status': 'error', 'message': 'Acción no permitida para este usuario'}), 403
 
@@ -233,35 +229,31 @@ def agregar_experiencia():
         return jsonify({'status': 'error', 'message': 'El Cargo y la Empresa son campos obligatorios'}), 400
 
     try:
-        # Crea una nueva instancia del modelo Experiencia con todos los datos del formulario
+        # ==============================================================================
+        # CORRECCIÓN FINAL: El nombre del argumento ahora es 'id_perfil' para que
+        # coincida exactamente con tu definición en models.py.
+        # ==============================================================================
         nueva_experiencia = Experiencia(
             cargo=data.get('cargo'),
             empresa=data.get('empresa'),
             ubicacion=data.get('ubicacion'),
             tipo_empleo=data.get('tipo_empleo'),
             fecha_inicio=data.get('fecha_inicio'),
-            # Si el checkbox "actualmente_aqui" está marcado, la fecha de fin es Nula
             fecha_fin=None if data.get('actualmente_aqui') else data.get('fecha_fin'),
             descripcion=data.get('descripcion'),
-            perfil_id=current_user.perfil.id
+            id_perfil=current_user.perfil.id # <-- Aquí estaba el error
         )
         db.session.add(nueva_experiencia)
         db.session.commit()
-        # Devuelve una respuesta de éxito con el código de estado 201 (Created)
         return jsonify({'status': 'success', 'message': 'Experiencia añadida con éxito'}), 201
     except Exception as e:
         db.session.rollback()
-        # Es una buena práctica registrar el error real en el log del servidor
         print(f"Error al guardar experiencia en DB: {e}")
         return jsonify({'status': 'error', 'message': 'Ocurrió un error interno al guardar los datos'}), 500
 
 @app.route('/educacion/agregar', methods=['POST'])
 @login_required
 def agregar_educacion():
-    """
-    Recibe datos JSON desde el modal de formación, los valida
-    y los guarda en la base de datos.
-    """
     if current_user.tipo_usuario != 'candidato':
         return jsonify({'status': 'error', 'message': 'Acción no permitida para este usuario'}), 403
     
@@ -270,15 +262,15 @@ def agregar_educacion():
         return jsonify({'status': 'error', 'message': 'Institución y Título son campos obligatorios'}), 400
 
     try:
-        # Asegúrate de que los nombres de las columnas coincidan con tu modelo Educacion
+        # CORRECCIÓN FINAL: Usando 'id_perfil'
         nueva_educacion = Educacion(
             institucion=data.get('institucion'),
             titulo=data.get('titulo'),
-            campo_estudio=data.get('campo'), # Ajusta si tu columna se llama 'campo' o 'campo_de_estudio'
+            campo_estudio=data.get('campo'),
             fecha_inicio=data.get('fecha_inicio'),
             fecha_fin=data.get('fecha_fin'),
             descripcion=data.get('descripcion'),
-            perfil_id=current_user.perfil.id
+            id_perfil=current_user.perfil.id # <-- Aquí estaba el error
         )
         db.session.add(nueva_educacion)
         db.session.commit()
@@ -291,10 +283,6 @@ def agregar_educacion():
 @app.route('/proyecto/agregar', methods=['POST'])
 @login_required
 def agregar_proyecto():
-    """
-    Recibe datos JSON desde el modal de proyectos, los valida
-    y los guarda en la base de datos.
-    """
     if current_user.tipo_usuario != 'candidato':
         return jsonify({'status': 'error', 'message': 'Acción no permitida para este usuario'}), 403
 
@@ -303,14 +291,14 @@ def agregar_proyecto():
         return jsonify({'status': 'error', 'message': 'El nombre del proyecto es un campo obligatorio'}), 400
 
     try:
-        # Asegúrate de que los nombres de las columnas coincidan con tu modelo Proyecto
+        # CORRECCIÓN FINAL: Usando 'id_perfil'
         nuevo_proyecto = Proyecto(
             nombre_proyecto=data.get('nombre'),
             asociado_con=data.get('asociado'),
             tecnologias=data.get('tecnologias'),
             enlace_proyecto=data.get('enlace'),
             descripcion=data.get('descripcion'),
-            perfil_id=current_user.perfil.id
+            id_perfil=current_user.perfil.id # <-- Aquí estaba el error
         )
         db.session.add(nuevo_proyecto)
         db.session.commit()
